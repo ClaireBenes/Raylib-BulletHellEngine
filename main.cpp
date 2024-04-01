@@ -21,10 +21,9 @@ void Update();
 void Draw();
 void Unload();
 
-bool Collision(Rectangle a, Rectangle b);
-
 int main()
 {
+    //********** Variables **********//
     BulletData orangeBullet {};
     orangeBullet.mColor = ORANGE;
     orangeBullet.mSpeed = 200;
@@ -49,12 +48,14 @@ int main()
     arthurPattern.bulletCount = 2;
     //(PI / 180.0f) to convert in degrees
     arthurPattern.bulletRotationOffset = 90 * (PI / 180.0f);
+    //********** Variables **********//
 
     auto bulletSpawner = std::make_shared<BulletSpawner>(780 / 2.0f, 960 / 2.0f);
     bulletSpawner->AddAttackPattern(clairePattern);
     bulletSpawner->AddAttackPattern(arthurPattern);
 
     gameManager.ToAddObject(bulletSpawner);
+
 
     Load();
 
@@ -68,7 +69,6 @@ int main()
     return 0;
 }
 
-
 void Load() 
 {
     InitWindow(screenWidth, screenHeight, "TouhouEngine");
@@ -80,23 +80,6 @@ void Update()
     float deltaTime = GetFrameTime();
     gameManager.Update(deltaTime);
 }
-
-bool Collision(Rectangle a, Rectangle b)
-{
-    int xMinA = a.x;
-    int yMinA = a.y;
-    int xMaxA = a.x + a.width;
-    int yMaxA = a.y + a.height;
-
-    int xMinB = b.x;
-    int yMinB = b.y;
-    int xMaxB = b.x + b.width;
-    int yMaxB = b.y + b.height;
-
-    return ( !(xMinB > xMaxA || yMinB > yMaxA
-        || xMaxB < xMinA || yMaxB < yMinA) );
-}
-
 
 void Draw() 
 {

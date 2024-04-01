@@ -8,6 +8,7 @@ BulletSpawner::BulletSpawner(float x, float y)
 
 void BulletSpawner::Update(float deltaTime)
 {
+	//spawn bullet at different rate for every pattern
 	for (int i = 0; i < mAttackPatternData.size(); i++)
 	{
 		mAttackPatternTimer[i] -= deltaTime;
@@ -17,14 +18,17 @@ void BulletSpawner::Update(float deltaTime)
 			SpawnBullets(mAttackPatternData[i]);
 		}
 
+		//rotation of bullet spawner
 		//transform.rotation *= Quaternion.Euler(transform.rotation.x, transform.rotation.y, attackPattern.rotationSpeed * Time.deltaTime);
 	}
 }
 
 void BulletSpawner::SpawnBullets(const AttackPatternData& data)
 {
+	//Offset in radiant considering number of bullet
 	float constantOffset = 2*PI / data.bulletCount;
 
+	//create a bullet for every bullet in said pattern
 	for (int i = 0; i < data.bulletCount; i++)
 	{
 		auto bullet = std::make_shared<Bullet>();
