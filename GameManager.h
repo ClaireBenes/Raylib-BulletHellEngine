@@ -11,6 +11,9 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
+	void ToAddObject(GameObject* object);
+	void ToEraseObject(GameObject* object);
+
 	static GameManager* GetInstance();
 
 private:
