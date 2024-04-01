@@ -26,8 +26,9 @@ int main()
 {
     BulletData pinkBullet {};
     pinkBullet.mColor = PINK;
-    pinkBullet.mSpeed = 60;
+    pinkBullet.mSpeed = 100;
     pinkBullet.mScale = 1;
+    pinkBullet.mAngularVelocity = 0.5f;
 
 
     AttackPatternData arthurPattern {};
@@ -35,10 +36,12 @@ int main()
 
     AttackPatternData clairePattern {};
     clairePattern.bulletdata = pinkBullet;
+    clairePattern.timeBetweenBullet = 0.3f;
+    clairePattern.bulletCount = 2;
 
     auto bulletSpawner = std::make_shared<BulletSpawner>(780 / 2.0f, 960 / 2.0f);
     bulletSpawner->AddAttackPattern(clairePattern);
-    bulletSpawner->AddAttackPattern(arthurPattern);
+    //bulletSpawner->AddAttackPattern(arthurPattern);
 
     gameManager.ToAddObject(bulletSpawner);
 

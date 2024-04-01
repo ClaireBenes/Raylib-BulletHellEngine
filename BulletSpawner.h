@@ -15,6 +15,7 @@ public:
 	void Update(float deltaTime) override;
 	void Draw() override;
 
+	void SpawnBullets(const AttackPatternData& data);
 	void AddAttackPattern(const AttackPatternData& attackPattern);
 
 public:

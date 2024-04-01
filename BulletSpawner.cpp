@@ -14,14 +14,29 @@ void BulletSpawner::Update(float deltaTime)
 		if (mAttackPatternTimer[i] <= 0.0f)
 		{
 			mAttackPatternTimer[i] += mAttackPatternData[i].timeBetweenBullet;
-
-			auto bullet = std::make_shared<Bullet>();
-			bullet->ChangeBulletData(mAttackPatternData[i].bulletdata);
-			bullet->mX = mX;
-			bullet->mY = mY;
-
-			mManager->ToAddObject(bullet);
+			SpawnBullets(mAttackPatternData[i]);
 		}
+
+		//transform.rotation *= Quaternion.Euler(transform.rotation.x, transform.rotation.y, attackPattern.rotationSpeed * Time.deltaTime);
+	}
+}
+
+void BulletSpawner::SpawnBullets(const AttackPatternData& data)
+{
+	float constantOffset = 360 / data.bulletCount;
+
+	for (int i = 0; i < data.bulletCount; i++)
+	{
+		//bullet rotation
+		//Quaternion bulletRotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, constantOffset * i + data.bulletRotationOffset);
+
+		auto bullet = std::make_shared<Bullet>();
+		bullet->ChangeBulletData(data.bulletdata);
+
+		bullet->mX = mX;
+		bullet->mY = mY;
+
+		mManager->ToAddObject(bullet);
 	}
 }
 
@@ -31,6 +46,7 @@ void BulletSpawner::Draw()
 	int size = 16;
 	DrawRectangle(mX - size / 2.0f, mY - size / 2.0f, size, size, BLUE);
 }
+
 
 void BulletSpawner::AddAttackPattern(const AttackPatternData& attackPattern)
 {

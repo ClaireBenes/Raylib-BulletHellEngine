@@ -3,7 +3,16 @@
 void Bullet::Update(float deltaTime)
 {
 	//Position
-	mX += mBulletData.mSpeed * deltaTime;
+	//mX += mBulletData.mSpeed * deltaTime;
+
+	mAngle += mBulletData.mAngularVelocity * deltaTime;
+
+	float x = mX + cos(mAngle) * (mBulletData.mSpeed * deltaTime);
+	float y = mY + sin(mAngle) * (mBulletData.mSpeed * deltaTime);
+
+	mX = x;
+	mY = y;
+
 
 	//Time before killing object that we want to destroy
 	//*************** Will have to replace with offscreen Logic **********************************
