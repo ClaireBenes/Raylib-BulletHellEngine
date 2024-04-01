@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "Bullet.h"
+#include "BulletData.h"
 #include "BulletSpawner.h"
 
 #include <iostream>
@@ -22,11 +23,26 @@ bool Collision(Rectangle a, Rectangle b);
 
 int main()
 {
-    Bullet bullet {};
-    bullet.mX = 780 / 2.0f;
-    bullet.mY = 960 / 2.0f;
+    BulletData pinkBullet {};
+    pinkBullet.mColor = PINK;
+    pinkBullet.mSpeed = 20;
+    pinkBullet.mScale = 2;
 
-    gameManager.ToAddObject(std::make_shared<BulletSpawner>(bullet.mX, bullet.mY));
+    Bullet bullet {};
+    bullet.ChangeBulletData(pinkBullet);
+    //bullet.mX = 780 / 2.0f;
+    //bullet.mY = 960 / 2.0f;
+    //bullet.mBulletData = pinkBullet;
+
+    //std::shared_ptr<Bullet> newbulelt = bullet;
+
+    //gameManager.ToAddObject(std::make_shared <bullet>);
+
+    BulletSpawner bulletSpawner { 780 / 2.0f, 960 / 2.0f };
+
+
+
+    gameManager.ToAddObject(std::make_shared<BulletSpawner>(780 / 2.0f, 960 / 2.0f));
 
     Load();
 

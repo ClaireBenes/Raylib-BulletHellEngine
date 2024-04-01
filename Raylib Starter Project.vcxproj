@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletData.h" />
     <ClInclude Include="BulletSpawner.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
