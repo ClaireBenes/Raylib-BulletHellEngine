@@ -9,6 +9,6 @@ public:
 	void Draw() override;
 
 public:
-	float timeToKill = 2.0f;
+	float mTimeBeforeKill = 2.0f;
 };
 
