@@ -1,5 +1,9 @@
 #include "raylib.h"
 
+#include <iostream>
+#include <vector>
+#include <memory>
+
 //Variable
 int screenWidth = 780;
 int screenHeight = 960;
