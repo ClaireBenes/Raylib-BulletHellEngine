@@ -9,6 +9,8 @@ public:
 	void Draw() override;
 
 public:
-	float mTimeBeforeKill = 2.0f;
+	float mTimeBeforeKill = 3.0f; //to Erase
+
+	//Bullet data
 };
 

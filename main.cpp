@@ -1,4 +1,6 @@
 #include "raylib.h"
+#include "Bullet.h"
+#include "BulletSpawner.h"
 
 #include <iostream>
 #include <vector>
@@ -8,6 +10,7 @@
 int screenWidth = 780;
 int screenHeight = 960;
 
+GameManager gameManager;
 
 //Function
 void Load();
@@ -19,6 +22,12 @@ bool Collision(Rectangle a, Rectangle b);
 
 int main()
 {
+    Bullet bullet {};
+    bullet.mX = 780 / 2.0f;
+    bullet.mY = 960 / 2.0f;
+
+    gameManager.ToAddObject(std::make_shared<BulletSpawner>(bullet.mX, bullet.mY));
+
     Load();
 
     while (!WindowShouldClose())
@@ -40,7 +49,8 @@ void Load()
 
 void Update() 
 {
-   //
+    float deltaTime = GetFrameTime();
+    gameManager.Update(deltaTime);
 }
 
 bool Collision(Rectangle a, Rectangle b)
@@ -65,7 +75,7 @@ void Draw()
     BeginDrawing();
     ClearBackground(BLACK);
 
-    //
+    gameManager.Draw();
 
     EndDrawing();
 }

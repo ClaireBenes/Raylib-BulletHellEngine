@@ -50,13 +50,13 @@ void GameManager::Draw()
 }
 
 //Add object to add to the list of all objects to add
-void GameManager::ToAddObject(GameObject* object)
+void GameManager::ToAddObject(std::shared_ptr<GameObject> object)
 {
 	mObjectToAdd.push_back(object);
 }
 
 //Add object to erase to the list of all objects to erase
-void GameManager::ToEraseObject(GameObject* object)
+void GameManager::ToEraseObject(std::shared_ptr<GameObject> object)
 {
 	mObjectToErase.push_back(object);
 }

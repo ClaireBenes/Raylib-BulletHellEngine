@@ -1,5 +1,6 @@
 #pragma once
 #include<vector>
+#include <memory>
 
 class GameObject;
 
@@ -11,8 +12,8 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-	void ToAddObject(GameObject* object);
-	void ToEraseObject(GameObject* object);
+	void ToAddObject(std::shared_ptr<GameObject> object);
+	void ToEraseObject(std::shared_ptr<GameObject> object);
 
 	static GameManager* GetInstance();
 
@@ -20,8 +21,8 @@ private:
 	static GameManager* instance;
 
 private:
-	std::vector<GameObject*> mObjectToAdd;
-	std::vector<GameObject*> mObjects;
-	std::vector<GameObject*> mObjectToErase;
+	std::vector<std::shared_ptr<GameObject>> mObjectToAdd;
+	std::vector<std::shared_ptr<GameObject>> mObjects;
+	std::vector<std::shared_ptr<GameObject>> mObjectToErase;
 };
 

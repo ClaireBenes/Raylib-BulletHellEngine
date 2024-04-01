@@ -1,9 +1,10 @@
 #pragma once
 #include "raylib.h"
-
 #include "GameManager.h"
 
-class GameObject
+#include <memory>
+
+class GameObject : public std::enable_shared_from_this<GameObject>
 {
 public:
 	GameObject();
