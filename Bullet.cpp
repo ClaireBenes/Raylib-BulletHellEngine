@@ -3,7 +3,7 @@
 void Bullet::Update(float deltaTime)
 {
 	//Position
-	mX += mSpeed * deltaTime;
+	mX += mBulletData.mSpeed * deltaTime;
 
 	//Time before killing object that we want to destroy
 	//*************** Will have to replace with offscreen Logic **********************************
@@ -19,19 +19,10 @@ void Bullet::Update(float deltaTime)
 void Bullet::Draw()
 {
 	//Show bullet
-	DrawCircle(mX, mY, 10 * mScale, mColor);
+	DrawCircle(mX, mY, 10 * mBulletData.mScale, mBulletData.mColor);
 }
 
 void Bullet::ChangeBulletData(BulletData newData)
 {
 	mBulletData = newData;
-	UpdateBulletData();
-}
-
-void Bullet::UpdateBulletData()
-{
-	mColor = mBulletData.mColor;
-	mSpeed = mBulletData.mSpeed;
-	mScale = mBulletData.mScale;
-	mAngularVelocity = mBulletData.mAngularVelocity;
 }

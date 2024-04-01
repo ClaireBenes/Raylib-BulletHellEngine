@@ -16,12 +16,5 @@ public:
 	float mTimeBeforeKill = 3.0f; //to Erase
 
 	BulletData mBulletData;
-
-	Color mColor = RED;
-	float mSpeed = 50;
-	float mAngularVelocity = 10;
-	float mScale = 1;
-
-
 };
 

@@ -141,6 +141,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttackPatternData.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletData.h" />
     <ClInclude Include="BulletSpawner.h" />

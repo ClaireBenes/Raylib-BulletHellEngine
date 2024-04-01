@@ -1,4 +1,5 @@
 #include "raylib.h"
+
 #include "Bullet.h"
 #include "BulletData.h"
 #include "BulletSpawner.h"
@@ -28,11 +29,16 @@ int main()
     pinkBullet.mSpeed = 60;
     pinkBullet.mScale = 1;
 
-    auto bullet = std::make_shared<Bullet>();
-    bullet->ChangeBulletData(pinkBullet);
+
+    AttackPatternData arthurPattern {};
+    arthurPattern.timeBetweenBullet = 0.2f;
+
+    AttackPatternData clairePattern {};
+    clairePattern.bulletdata = pinkBullet;
 
     auto bulletSpawner = std::make_shared<BulletSpawner>(780 / 2.0f, 960 / 2.0f);
-    bulletSpawner->bullet = bullet;
+    bulletSpawner->AddAttackPattern(clairePattern);
+    bulletSpawner->AddAttackPattern(arthurPattern);
 
     gameManager.ToAddObject(bulletSpawner);
 
