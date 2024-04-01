@@ -16,7 +16,7 @@ void Bullet::Update(float deltaTime)
 
 	//Time before killing object that we want to destroy
 	//*************** Will have to replace with offscreen Logic **********************************
-	mTimeBeforeKill -= deltaTime;
+	//mTimeBeforeKill -= deltaTime;
 	if (mTimeBeforeKill <= 0.0f)
 	{
 		//kill object

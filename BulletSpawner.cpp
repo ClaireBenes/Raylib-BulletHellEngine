@@ -23,15 +23,13 @@ void BulletSpawner::Update(float deltaTime)
 
 void BulletSpawner::SpawnBullets(const AttackPatternData& data)
 {
-	float constantOffset = 360 / data.bulletCount;
+	float constantOffset = 2*PI / data.bulletCount;
 
 	for (int i = 0; i < data.bulletCount; i++)
 	{
-		//bullet rotation
-		//Quaternion bulletRotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, constantOffset * i + data.bulletRotationOffset);
-
 		auto bullet = std::make_shared<Bullet>();
 		bullet->ChangeBulletData(data.bulletdata);
+		bullet->mAngle = constantOffset * i + data.bulletRotationOffset;;
 
 		bullet->mX = mX;
 		bullet->mY = mY;

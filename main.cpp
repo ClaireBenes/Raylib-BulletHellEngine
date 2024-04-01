@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <math.h>
 
 //Variable
 int screenWidth = 780;
@@ -24,24 +25,34 @@ bool Collision(Rectangle a, Rectangle b);
 
 int main()
 {
-    BulletData pinkBullet {};
-    pinkBullet.mColor = PINK;
-    pinkBullet.mSpeed = 100;
-    pinkBullet.mScale = 1;
-    pinkBullet.mAngularVelocity = 0.5f;
+    BulletData orangeBullet {};
+    orangeBullet.mColor = ORANGE;
+    orangeBullet.mSpeed = 200;
+    orangeBullet.mScale = 1.2;
+    orangeBullet.mAngularVelocity = 0.7f;
 
-
-    AttackPatternData arthurPattern {};
-    arthurPattern.timeBetweenBullet = 0.2f;
+    BulletData purpleBullet {};
+    purpleBullet.mColor = PURPLE;
+    purpleBullet.mSpeed = 200;
+    purpleBullet.mScale = 1.2;
+    purpleBullet.mAngularVelocity = 0.7f;
 
     AttackPatternData clairePattern {};
-    clairePattern.bulletdata = pinkBullet;
-    clairePattern.timeBetweenBullet = 0.3f;
+    clairePattern.bulletdata = orangeBullet;
+    clairePattern.timeBetweenBullet = 0.2f;
     clairePattern.bulletCount = 2;
+    clairePattern.bulletRotationOffset = 0.0f;
+
+    AttackPatternData arthurPattern {};
+    arthurPattern.bulletdata = purpleBullet;
+    arthurPattern.timeBetweenBullet = 0.2f;
+    arthurPattern.bulletCount = 2;
+    //(PI / 180.0f) to convert in degrees
+    arthurPattern.bulletRotationOffset = 90 * (PI / 180.0f);
 
     auto bulletSpawner = std::make_shared<BulletSpawner>(780 / 2.0f, 960 / 2.0f);
     bulletSpawner->AddAttackPattern(clairePattern);
-    //bulletSpawner->AddAttackPattern(arthurPattern);
+    bulletSpawner->AddAttackPattern(arthurPattern);
 
     gameManager.ToAddObject(bulletSpawner);
 
