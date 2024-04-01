@@ -14,7 +14,7 @@ void BulletSpawner::Update(float deltaTime)
 	{
 		mSpawnTime += SPAWN_TIME;
 
-		auto bullet = std::make_shared<Bullet>();
+		//auto bullet = std::make_shared<Bullet>();
 		bullet->mX = mX;
 		bullet->mY = mY;
 

@@ -12,6 +12,7 @@ void Bullet::Update(float deltaTime)
 	{
 		//kill object
 		mManager->ToEraseObject(shared_from_this());
+		mTimeBeforeKill = 3.0f;
 	}
 }
 

@@ -25,24 +25,16 @@ int main()
 {
     BulletData pinkBullet {};
     pinkBullet.mColor = PINK;
-    pinkBullet.mSpeed = 20;
-    pinkBullet.mScale = 2;
+    pinkBullet.mSpeed = 60;
+    pinkBullet.mScale = 1;
 
-    Bullet bullet {};
-    bullet.ChangeBulletData(pinkBullet);
-    //bullet.mX = 780 / 2.0f;
-    //bullet.mY = 960 / 2.0f;
-    //bullet.mBulletData = pinkBullet;
+    auto bullet = std::make_shared<Bullet>();
+    bullet->ChangeBulletData(pinkBullet);
 
-    //std::shared_ptr<Bullet> newbulelt = bullet;
+    auto bulletSpawner = std::make_shared<BulletSpawner>(780 / 2.0f, 960 / 2.0f);
+    bulletSpawner->bullet = bullet;
 
-    //gameManager.ToAddObject(std::make_shared <bullet>);
-
-    BulletSpawner bulletSpawner { 780 / 2.0f, 960 / 2.0f };
-
-
-
-    gameManager.ToAddObject(std::make_shared<BulletSpawner>(780 / 2.0f, 960 / 2.0f));
+    gameManager.ToAddObject(bulletSpawner);
 
     Load();
 
