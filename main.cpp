@@ -24,6 +24,7 @@ void Unload();
 int main()
 {
     //********** Variables **********//
+
     BulletData orangeBullet {};
     orangeBullet.mColor = ORANGE;
     orangeBullet.mSpeed = 200;
@@ -38,18 +39,19 @@ int main()
 
     AttackPatternData clairePattern {};
     clairePattern.bulletdata = orangeBullet;
-    clairePattern.timeBetweenBullet = 0.2f;
+    clairePattern.timeBetweenBullet = 0.15f;
     clairePattern.bulletCount = 2;
+    clairePattern.rotationSpeed = 2;
     clairePattern.bulletRotationOffset = 0.0f;
-    clairePattern.rotationSpeed = 1;
 
     AttackPatternData arthurPattern {};
     arthurPattern.bulletdata = purpleBullet;
-    arthurPattern.timeBetweenBullet = 0.2f;
+    arthurPattern.timeBetweenBullet = 0.15f;
     arthurPattern.bulletCount = 2;
+    arthurPattern.rotationSpeed = 2;
     //(PI / 180.0f) to convert in degrees
     arthurPattern.bulletRotationOffset = 90 * (PI / 180.0f);
-    arthurPattern.rotationSpeed = 1;
+
     //********** Variables **********//
 
     auto bulletSpawner = std::make_shared<BulletSpawner>(780 / 2.0f, 960 / 2.0f);

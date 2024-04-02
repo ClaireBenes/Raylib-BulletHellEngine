@@ -18,7 +18,7 @@ void BulletSpawner::Update(float deltaTime)
 
 			SpawnBullets(mAttackPatternData[i]);
 		}
-
+		//Rotate attack pattern
 		mAttackPatternData[i].bulletRotationOffset += mAttackPatternData[i].rotationSpeed * deltaTime;
 	}
 }
