@@ -41,6 +41,7 @@ int main()
     clairePattern.timeBetweenBullet = 0.2f;
     clairePattern.bulletCount = 2;
     clairePattern.bulletRotationOffset = 0.0f;
+    clairePattern.rotationSpeed = 1;
 
     AttackPatternData arthurPattern {};
     arthurPattern.bulletdata = purpleBullet;
@@ -48,6 +49,7 @@ int main()
     arthurPattern.bulletCount = 2;
     //(PI / 180.0f) to convert in degrees
     arthurPattern.bulletRotationOffset = 90 * (PI / 180.0f);
+    arthurPattern.rotationSpeed = 1;
     //********** Variables **********//
 
     auto bulletSpawner = std::make_shared<BulletSpawner>(780 / 2.0f, 960 / 2.0f);

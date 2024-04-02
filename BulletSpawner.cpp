@@ -15,11 +15,11 @@ void BulletSpawner::Update(float deltaTime)
 		if (mAttackPatternTimer[i] <= 0.0f)
 		{
 			mAttackPatternTimer[i] += mAttackPatternData[i].timeBetweenBullet;
+
 			SpawnBullets(mAttackPatternData[i]);
 		}
 
-		//rotation of bullet spawner
-		//transform.rotation *= Quaternion.Euler(transform.rotation.x, transform.rotation.y, attackPattern.rotationSpeed * Time.deltaTime);
+		mAttackPatternData[i].bulletRotationOffset += mAttackPatternData[i].rotationSpeed * deltaTime;
 	}
 }
 
@@ -33,7 +33,7 @@ void BulletSpawner::SpawnBullets(const AttackPatternData& data)
 	{
 		auto bullet = std::make_shared<Bullet>();
 		bullet->ChangeBulletData(data.bulletdata);
-		bullet->mAngle = constantOffset * i + data.bulletRotationOffset;;
+		bullet->mAngle = constantOffset * i + data.bulletRotationOffset;
 
 		bullet->mX = mX;
 		bullet->mY = mY;
