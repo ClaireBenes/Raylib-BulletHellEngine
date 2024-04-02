@@ -16,6 +16,7 @@ public:
 public:
 	float mX, mY;
 	float mAngle;
+	float mSize;
 
 protected:
 	GameManager* mManager;

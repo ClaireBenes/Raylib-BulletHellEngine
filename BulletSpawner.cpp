@@ -46,8 +46,8 @@ void BulletSpawner::SpawnBullets(const AttackPatternData& data)
 void BulletSpawner::Draw()
 {
 	//Size & position of the bulletSpawner
-	int size = 16;
-	DrawRectangle(mX - size / 2.0f, mY - size / 2.0f, size, size, BLUE);
+	mSize = 16;
+	DrawRectangle(mX - mSize / 2.0f, mY - mSize / 2.0f, mSize, mSize, BLUE);
 }
 
 

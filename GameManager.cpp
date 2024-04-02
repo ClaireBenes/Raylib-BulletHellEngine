@@ -11,7 +11,7 @@ GameManager::GameManager()
 
 void GameManager::Update(float deltaTime)
 {
-	//Adding object that need to be added
+	//Adding object that we want to add
 	for (auto& object : mObjectToAdd)
 	{
 		mObjects.push_back(object);
@@ -25,7 +25,7 @@ void GameManager::Update(float deltaTime)
 		object->Update(deltaTime);
 	}
 
-	//Erasing object that need to be killed
+	//Erasing object that we want to kill
 	for (auto& object : mObjectToErase)
 	{
 		auto objectToKill = std::find(mObjects.begin(), mObjects.end(), object);
@@ -43,6 +43,7 @@ void GameManager::Update(float deltaTime)
 
 void GameManager::Draw()
 {
+	//Debug bullet count (gameObjects - bulletSpawner & player)
 	DrawText(TextFormat("Bullets : %i", mObjects.size() - 1), 10, 10, 30, RED);
 
 	for (auto& object : mObjects)

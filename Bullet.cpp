@@ -1,4 +1,7 @@
 #include "Bullet.h"
+#include "Player.h"
+
+#include <iostream>
 
 void Bullet::Update(float deltaTime)
 {
@@ -17,13 +20,22 @@ void Bullet::Update(float deltaTime)
 	{
 		mManager->ToEraseObject(shared_from_this());
 	}
+
+	//Check collision between player and bullets
+	auto player = Player::GetInstance();
+	if (CheckCollisionCircles({ mX, mY }, mSize ,{ player->mX, player->mY }, player->mSize))
+	{
+		//will have to change -- erase iostream on top too
+		std::cout << player->mX << std::endl;
+		//Red screen to indicate you are hurt
+	}
 }
 
 void Bullet::Draw()
 {
 	//Show bullet
-	//change 10 with size
-	DrawCircle(mX, mY, mBulletData.mSize, mBulletData.mColor);
+	mSize = mBulletData.mSize;
+	DrawCircle(mX, mY, mSize, mBulletData.mColor);
 }
 
 void Bullet::ChangeBulletData(BulletData newData)
