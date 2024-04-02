@@ -12,8 +12,6 @@ public:
 	void ChangeBulletData(BulletData newData);
 
 public:
-	float mTimeBeforeKill = 3.0f; //to Erase
-
 	BulletData mBulletData;
 };
 

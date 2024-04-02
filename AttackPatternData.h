@@ -5,7 +5,7 @@
 class AttackPatternData
 {
 public:
-    BulletData bulletdata;
+    BulletData bulletData;
     float timeBetweenBullet = 1;
     float rotationSpeed = 1;
     float bulletRotationOffset = 0;

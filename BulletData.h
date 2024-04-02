@@ -7,5 +7,5 @@ public:
     Color mColor = RED;
     float mSpeed = 50;
     float mAngularVelocity = 0;
-    float mScale = 1;
+    float mSize = 10;
 };

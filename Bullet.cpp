@@ -11,22 +11,19 @@ void Bullet::Update(float deltaTime)
 	mX = x;
 	mY = y;
 
-	//Time before killing object that we want to destroy
-	//*************** Will have to replace with offscreen Logic **********************************
-	
-	//mTimeBeforeKill -= deltaTime;
-	if (mTimeBeforeKill <= 0.0f)
+	//Destroy bullet when out of screen -- Will need to change it when the tool will appear
+	if (mX + mBulletData.mSize < 0 - mBulletData.mSize || mX - mBulletData.mSize > GetScreenWidth() + mBulletData.mSize || 
+		mY + mBulletData.mSize < 0 - mBulletData.mSize || mY - mBulletData.mSize > GetScreenHeight() + mBulletData.mSize)
 	{
-		//kill object
 		mManager->ToEraseObject(shared_from_this());
-		mTimeBeforeKill = 3.0f;
 	}
 }
 
 void Bullet::Draw()
 {
 	//Show bullet
-	DrawCircle(mX, mY, 10 * mBulletData.mScale, mBulletData.mColor);
+	//change 10 with size
+	DrawCircle(mX, mY, mBulletData.mSize, mBulletData.mColor);
 }
 
 void Bullet::ChangeBulletData(BulletData newData)

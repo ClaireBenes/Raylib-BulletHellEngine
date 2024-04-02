@@ -8,9 +8,10 @@ BulletSpawner::BulletSpawner(float x, float y)
 
 void BulletSpawner::Update(float deltaTime)
 {
-	//spawn bullet at different rate for every pattern
+	//For every attack pattern in the list
 	for (int i = 0; i < mAttackPatternData.size(); i++)
 	{
+		//spawn bullet at different time rate
 		mAttackPatternTimer[i] -= deltaTime;
 		if (mAttackPatternTimer[i] <= 0.0f)
 		{
@@ -32,7 +33,7 @@ void BulletSpawner::SpawnBullets(const AttackPatternData& data)
 	for (int i = 0; i < data.bulletCount; i++)
 	{
 		auto bullet = std::make_shared<Bullet>();
-		bullet->ChangeBulletData(data.bulletdata);
+		bullet->ChangeBulletData(data.bulletData);
 		bullet->mAngle = constantOffset * i + data.bulletRotationOffset;
 
 		bullet->mX = mX;
