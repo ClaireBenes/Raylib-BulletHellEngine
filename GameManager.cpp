@@ -43,6 +43,8 @@ void GameManager::Update(float deltaTime)
 
 void GameManager::Draw()
 {
+	DrawText(TextFormat("Bullets : %i", mObjects.size() - 1), 10, 10, 30, RED);
+
 	for (auto& object : mObjects)
 	{
 		object->Draw();
