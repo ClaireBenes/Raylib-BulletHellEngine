@@ -22,15 +22,18 @@ void Player::Update(float deltaTime)
 	//if player got hurt
 	if (mIsInvincible)
 	{
-		mX -= (mX - (780 / 2.0f)) * mRespawnSpeed * deltaTime;
-		mY -= (mY - (960 / 1.1f)) * mRespawnSpeed * deltaTime;
-
-		//Timer to respawn and play again
-		mRespawnTime -= deltaTime;
-		if (mRespawnTime <= 0.0f)
+		if (mIsHurt)
 		{
-			mRespawnTime += RESPAWN_TIME;
-			mIsHurt = false;
+			mX -= (mX - (780 / 2.0f)) * mRespawnSpeed * deltaTime;
+			mY -= (mY - (960 / 1.1f)) * mRespawnSpeed * deltaTime;
+
+			//Timer to respawn and play again
+			mRespawnTime -= deltaTime;
+			if (mRespawnTime <= 0.0f)
+			{
+				mRespawnTime += RESPAWN_TIME;
+				mIsHurt = false;
+			}
 		}
 
 		//Timer of invinciblity (longer than respawn)
@@ -45,12 +48,22 @@ void Player::Update(float deltaTime)
 
 void Player::Draw()
 {
+	//Draw Player Texture behind too
+	
 	//Size & position of the player
 	mSize = 8;
-	DrawCircle(mX - mSize / 4.0f, mY - mSize / 4.0f, mSize, RED);
-	DrawCircle(mX - mSize / 4.0f, mY - mSize / 4.0f, mSize / 1.3f, WHITE);
 
-	//Draw Player Texture behind too
+	//If is invincible, see player less (less alpha)
+	if (mIsInvincible)
+	{
+		DrawCircle(mX - mSize / 4.0f, mY - mSize / 4.0f, mSize, { 230, 41, 55, 50 });
+		DrawCircle(mX - mSize / 4.0f, mY - mSize / 4.0f, mSize / 1.3f, { 255, 255, 255, 50 });
+	}
+	else
+	{
+		DrawCircle(mX - mSize / 4.0f, mY - mSize / 4.0f, mSize, RED);
+		DrawCircle(mX - mSize / 4.0f, mY - mSize / 4.0f, mSize / 1.3f, WHITE);
+	}
 
 	//Red Screen when collides with bullet
 	if (mIsHurt)

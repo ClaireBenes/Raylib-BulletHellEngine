@@ -15,7 +15,7 @@ public:
 
 public:
 	const float RESPAWN_TIME = 2.0f;
-	const float INVINCIBILITY_TIME = 3.0f;
+	const float INVINCIBILITY_TIME = 3.5f;
 	float mRespawnTime = RESPAWN_TIME;
 	float mInvincibilityTime = INVINCIBILITY_TIME;
 
