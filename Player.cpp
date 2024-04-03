@@ -11,24 +11,35 @@ Player::Player(float x, float y)
 
 void Player::Update(float deltaTime)
 {
-	//if 
-	if (mIsHurt)
-	{
-		mX -= (mX - (780 / 2.0f)) * mRespawnSpeed * deltaTime;
-		mY -= (mY - (960 / 1.1f)) * mRespawnSpeed * deltaTime;
-
-		RESPAWN_TIME -= deltaTime;
-		if (RESPAWN_TIME <= 0.0f)
-		{
-			RESPAWN_TIME += respawnTime;
-			mIsHurt = false;
-		}
-	}
-	else
+	//if player is not hurt and has respawned
+	if(!mIsHurt)
 	{
 		//Move player toward mouse pos
 		mX -= (mX - GetMouseX()) * mSpeed * deltaTime;
 		mY -= (mY - GetMouseY()) * mSpeed * deltaTime;
+	}
+
+	//if player got hurt
+	if (mIsInvincible)
+	{
+		mX -= (mX - (780 / 2.0f)) * mRespawnSpeed * deltaTime;
+		mY -= (mY - (960 / 1.1f)) * mRespawnSpeed * deltaTime;
+
+		//Timer to respawn and play again
+		mRespawnTime -= deltaTime;
+		if (mRespawnTime <= 0.0f)
+		{
+			mRespawnTime += RESPAWN_TIME;
+			mIsHurt = false;
+		}
+
+		//Timer of invinciblity (longer than respawn)
+		mInvincibilityTime -= deltaTime;
+		if (mInvincibilityTime <= 0.0f)
+		{
+			mInvincibilityTime += INVINCIBILITY_TIME;
+			mIsInvincible = false;
+		}
 	}
 }
 
@@ -50,10 +61,12 @@ void Player::Draw()
 
 void Player::GetHurt()
 {
-	mIsHurt = true;
+	if (!mIsInvincible)
+	{
+		mIsHurt = true;
+	}
 
-	//add some invincibility
-	//do an invincibility timer that is longer
+	mIsInvincible = true;
 }
 
 Player* Player::GetInstance()

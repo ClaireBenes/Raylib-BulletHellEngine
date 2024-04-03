@@ -14,13 +14,17 @@ public:
 	static Player* GetInstance();
 
 public:
-	const float respawnTime = 2.0f;
-	float RESPAWN_TIME = respawnTime;
+	const float RESPAWN_TIME = 2.0f;
+	const float INVINCIBILITY_TIME = 3.0f;
+	float mRespawnTime = RESPAWN_TIME;
+	float mInvincibilityTime = INVINCIBILITY_TIME;
 
 private:
 	float mSpeed = 10.0f;
 	float mRespawnSpeed = 3.0f;
+
 	bool mIsHurt = false;
+	bool mIsInvincible = false;
 
 private:
 	static Player* instance;
