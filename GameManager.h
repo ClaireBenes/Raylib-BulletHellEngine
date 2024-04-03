@@ -21,6 +21,7 @@ private:
 	static GameManager* instance;
 
 private:
+	//using smart (shared) pointer to automatically deallocate the objects when they are not referenced anymore
 	std::vector<std::shared_ptr<GameObject>> mObjectToAdd;
 	std::vector<std::shared_ptr<GameObject>> mObjects;
 	std::vector<std::shared_ptr<GameObject>> mObjectToErase;

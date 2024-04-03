@@ -1,8 +1,6 @@
 #include "Bullet.h"
 #include "Player.h"
 
-#include <iostream>
-
 void Bullet::Update(float deltaTime)
 {
 	//rotation and position of bullet overTime
@@ -25,9 +23,7 @@ void Bullet::Update(float deltaTime)
 	auto player = Player::GetInstance();
 	if (CheckCollisionCircles({ mX, mY }, mSize ,{ player->mX, player->mY }, player->mSize))
 	{
-		//will have to change -- erase iostream on top too
-		std::cout << player->mX << std::endl;
-		//Red screen to indicate you are hurt
+		player->GetHurt();
 	}
 }
 
