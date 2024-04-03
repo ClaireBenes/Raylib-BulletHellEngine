@@ -24,6 +24,7 @@ void Player::Update(float deltaTime)
 	{
 		if (mIsHurt)
 		{
+			//Move player to the bottom of screen - to respawn location
 			mX -= (mX - (780 / 2.0f)) * mRespawnSpeed * deltaTime;
 			mY -= (mY - (960 / 1.1f)) * mRespawnSpeed * deltaTime;
 
@@ -74,12 +75,12 @@ void Player::Draw()
 
 void Player::GetHurt()
 {
+	//if not invicible, get hurt
 	if (!mIsInvincible)
 	{
 		mIsHurt = true;
+		mIsInvincible = true;
 	}
-
-	mIsInvincible = true;
 }
 
 Player* Player::GetInstance()
