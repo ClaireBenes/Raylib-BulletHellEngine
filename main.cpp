@@ -1,4 +1,6 @@
 #include "raylib.h"
+#include "imgui.h"
+#include "rlImGui.h"
 
 #include "Bullet.h"
 #include "BulletData.h"
@@ -21,6 +23,7 @@ void Load();
 void Update();
 void Draw();
 void Unload();
+void CallImGui();
 
 int main()
 {
@@ -96,6 +99,8 @@ void Load()
 {
     InitWindow(screenWidth, screenHeight, "TouhouEngine");
     SetTargetFPS(60);
+
+    rlImGuiSetup(true);
 }
 
 void Update() 
@@ -110,13 +115,26 @@ void Draw()
     ClearBackground(BLACK);
 
     gameManager.Draw();
+    CallImGui();
 
     EndDrawing();
 }
 
 void Unload() 
 {
+    rlImGuiShutdown();
     CloseWindow();
+}
+
+void CallImGui()
+{
+    rlImGuiBegin();
+
+    ImGui::Begin("Hello", NULL);
+    ImGui::Text("Trying to setup ImGUi");
+    ImGui::End();
+
+    rlImGuiEnd();
 }
 
 

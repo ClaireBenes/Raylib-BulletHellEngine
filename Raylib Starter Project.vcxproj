@@ -108,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\raylib;$(SolutionDir)\raylib\external;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Claire\Documents\ARTFX\Année 2\Cours\Progra\C++\Raylib-TouhouEngine\dependencies\include;$(SolutionDir)\raylib;$(SolutionDir)\raylib\external;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,14 +138,31 @@
     <ClCompile Include="BulletSpawner.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="imgui_demo.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_tables.cpp" />
+    <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="rlImGui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackPatternData.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletData.h" />
     <ClInclude Include="BulletSpawner.h" />
+    <ClInclude Include="dependencies\include\extras\FA6FreeSolidFontData.h" />
+    <ClInclude Include="dependencies\include\extras\IconsFontAwesome6.h" />
+    <ClInclude Include="dependencies\include\imconfig.h" />
+    <ClInclude Include="dependencies\include\imgui.h" />
+    <ClInclude Include="dependencies\include\imgui_impl_raylib.h" />
+    <ClInclude Include="dependencies\include\imgui_internal.h" />
+    <ClInclude Include="dependencies\include\imstb_rectpack.h" />
+    <ClInclude Include="dependencies\include\imstb_textedit.h" />
+    <ClInclude Include="dependencies\include\imstb_truetype.h" />
+    <ClInclude Include="dependencies\include\rlImGui.h" />
+    <ClInclude Include="dependencies\include\rlImGuiColors.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Player.h" />
