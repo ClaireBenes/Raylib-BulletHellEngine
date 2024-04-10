@@ -13,7 +13,7 @@ void Bullet::Update(float deltaTime)
 	mY = y;
 
 	//Destroy bullet when out of screen -- Will need to change it when the tool will appear
-	if (mX + mBulletData.mSize < 0 - mBulletData.mSize || mX - mBulletData.mSize > GetScreenWidth() + mBulletData.mSize || 
+	if (mX + mBulletData.mSize < 0 - mBulletData.mSize || mX - mBulletData.mSize > 760 + mBulletData.mSize || 
 		mY + mBulletData.mSize < 0 - mBulletData.mSize || mY - mBulletData.mSize > GetScreenHeight() + mBulletData.mSize)
 	{
 		mManager->ToEraseObject(shared_from_this());

@@ -44,7 +44,7 @@ void GameManager::Update(float deltaTime)
 void GameManager::Draw()
 {
 	//Debug bullet count (gameObjects - bulletSpawner & player)
-	DrawText(TextFormat("Bullets : %i", mObjects.size() - 1), 10, 10, 30, RED);
+	//DrawText(TextFormat("Bullets : %i", mObjects.size() - 2), 10, 10, 30, RED);
 
 	for (auto& object : mObjects)
 	{

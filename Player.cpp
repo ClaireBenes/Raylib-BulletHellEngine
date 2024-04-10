@@ -12,11 +12,23 @@ Player::Player(float x, float y)
 void Player::Update(float deltaTime)
 {
 	//if player is not hurt and has respawned
+
+
 	if(!mIsHurt)
 	{
-		//Move player toward mouse pos
-		mX -= (mX - GetMouseX()) * mSpeed * deltaTime;
-		mY -= (mY - GetMouseY()) * mSpeed * deltaTime;
+		if (GetMouseX() > 760)
+		{
+			mIsInvincible = true;
+			mX -= (mX - (780 / 2.0f)) * mRespawnSpeed * deltaTime;
+			mY -= (mY - (960 / 1.1f)) * mRespawnSpeed * deltaTime;
+		}
+		else
+		{
+			//Move player toward mouse pos
+			mX -= (mX - GetMouseX()) * mSpeed * deltaTime;
+			mY -= (mY - GetMouseY()) * mSpeed * deltaTime;
+		}
+
 	}
 
 	//if player got hurt

@@ -12,11 +12,14 @@
 #include <memory>
 #include <math.h>
 
+
 //Variable
-int screenWidth = 780;
+int screenWidth = 1560;
+//int screenWidth = 780;
 int screenHeight = 960;
 
 GameManager gameManager;
+
 
 //Function
 void Load();
@@ -101,12 +104,17 @@ void Load()
     SetTargetFPS(60);
 
     rlImGuiSetup(true);
+    //ImGuiIO& io = ImGui::GetIO();
+    //io.ConfigWindowsMoveFromTitleBarOnly;
+    //ImGui::ImageButton(texId, ImGui::GetContentRegionAvail(), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f), 0);
 }
 
 void Update() 
 {
     float deltaTime = GetFrameTime();
     gameManager.Update(deltaTime);
+
+    //ImGui::SetNextWindowSizeConstraints(ImVec2(1560, 960), ImVec2(1560, 960));
 }
 
 void Draw() 
@@ -130,9 +138,12 @@ void CallImGui()
 {
     rlImGuiBegin();
 
-    ImGui::Begin("Hello", NULL);
+    ImGui::Begin("BulletEditor", NULL);
+    //ImGui::Begin("BulletEditor", NULL, ImGuiWindowFlags_NoMove);
     ImGui::Text("Trying to setup ImGUi");
     ImGui::End();
+
+    ImGui::ShowDemoWindow();
 
     rlImGuiEnd();
 }
