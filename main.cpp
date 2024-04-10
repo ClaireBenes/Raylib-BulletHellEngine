@@ -138,12 +138,23 @@ void CallImGui()
 {
     rlImGuiBegin();
 
-    ImGui::Begin("BulletEditor", NULL);
-    //ImGui::Begin("BulletEditor", NULL, ImGuiWindowFlags_NoMove);
-    ImGui::Text("Trying to setup ImGUi");
+    ImGuiWindowFlags windowFlags
+    {
+        ImGuiWindowFlags_NoMove
+        //ImGuiWindowFlags_NoBackground
+    };
+
+    //ImGui::Begin("BulletEditor");
+    ImGui::Begin("BulletEditor", NULL, windowFlags);
+    ImGui::Text("Going to have bullet editor there");
     ImGui::End();
 
-    ImGui::ShowDemoWindow();
+    //ImGui::Begin("AttackPattern Editor");
+    ImGui::Begin("AttackPattern Editor", NULL, windowFlags);
+    ImGui::Text("Going to have Attack Pattern editor there");
+    ImGui::End();
+
+    //ImGui::ShowDemoWindow();
 
     rlImGuiEnd();
 }
