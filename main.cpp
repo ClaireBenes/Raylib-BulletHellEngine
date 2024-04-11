@@ -231,6 +231,11 @@ void AttackPatternEditor()
             static float dragRotSpeed[100] = { 6.0f };
             ImGui::DragFloat("Rotation Speed", &dragRotSpeed[i], 0.05f, 0.0f, 20.0f);
 
+            //90 * (PI / 180.0f)
+            //choose time between bullet
+            static float rotateOffset[360] = { 0.0f };
+            ImGui::SliderFloat("Rotation Offset", &rotateOffset[i], 0.0f, 360.0f);
+
             ImGui::TreePop();
         }
     }
