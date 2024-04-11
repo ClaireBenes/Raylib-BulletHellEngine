@@ -229,6 +229,7 @@ void AttackPatternEditor()
 
             //ImGui::Combo("combo 4 (function)", &item_current, [](void* data, int n) { return ((const char**) data)[n]; }, items, IM_ARRAYSIZE(items));
 
+            //wil have to change for bullet data index
             static int item_current = i;
             ImGui::Combo("Bullets", &item_current, items, IM_ARRAYSIZE(items));
 
