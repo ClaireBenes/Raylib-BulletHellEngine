@@ -109,17 +109,12 @@ void Load()
     SetTargetFPS(60);
 
     rlImGuiSetup(true);
-    //ImGuiIO& io = ImGui::GetIO();
-    //io.ConfigWindowsMoveFromTitleBarOnly;
-    //ImGui::ImageButton(texId, ImGui::GetContentRegionAvail(), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f), 0);
 }
 
 void Update() 
 {
     float deltaTime = GetFrameTime();
     gameManager.Update(deltaTime);
-
-    //ImGui::SetNextWindowSizeConstraints(ImVec2(1560, 960), ImVec2(1560, 960));
 }
 
 void Draw() 
@@ -182,16 +177,16 @@ void BulletEditor()
         //choose image
 
         //choose speed
-        static float slider_speed = 100.0f;
-        ImGui::SliderFloat("Speed", &slider_speed, 0.0f, 500.0f);
+        static float sliderSpeed = 100.0f;
+        ImGui::SliderFloat("Speed", &sliderSpeed, 0.0f, 500.0f);
 
         //choose size
-        static float slider_size = 10.0f;
-        ImGui::SliderFloat("Size", &slider_size, 5.0f, 50.0f);
+        static float sliderSize = 10.0f;
+        ImGui::SliderFloat("Size", &sliderSize, 5.0f, 50.0f);
 
         //choose angular velocity
-        static float drag_velocity = 0.5f;
-        ImGui::DragFloat("Angular Velocity", &drag_velocity, 0.005f, 0.0f, 1.0f);
+        static float dragVelocity = 0.5f;
+        ImGui::DragFloat("Angular Velocity", &dragVelocity, 0.005f, 0.0f, 1.0f);
 
         ImGui::TreePop();
     }
@@ -217,11 +212,8 @@ void AttackPatternEditor()
 
     for (int i = 0; i < attackpatternNumber; i++)
     {
-        if (ImGui::TreeNodeEx(std::to_string(i).c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+        if (ImGui::TreeNodeEx(TextFormat("Attack Pattern %d", i), ImGuiTreeNodeFlags_DefaultOpen))
         {
-            ImGui::SameLine();
-            ImGui::Text(std::to_string(i).c_str());
-
             //show all bullet already created
             const char* items[] = { "Orange", "Purple", "Blue" };
             static int everyBullet[100];
@@ -230,6 +222,14 @@ void AttackPatternEditor()
             //choose bullet count
             static int bulletCount[1000];
             ImGui::InputInt("Bullet Count", &bulletCount[i]);
+
+            //choose time between bullet
+            static float fireRate[100] = { 0.5f };
+            ImGui::SliderFloat("Fire Rate", &fireRate[i], 0.0f, 20.0f);
+
+            //choose rotation speed
+            static float dragRotSpeed[100] = { 6.0f };
+            ImGui::DragFloat("Rotation Speed", &dragRotSpeed[i], 0.05f, 0.0f, 20.0f);
 
             ImGui::TreePop();
         }
