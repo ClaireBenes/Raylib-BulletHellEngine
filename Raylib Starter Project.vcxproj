@@ -146,6 +146,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="rlImGui.cpp" />
+    <ClCompile Include="ToolInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackPatternData.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ToolInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
