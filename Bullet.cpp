@@ -4,17 +4,17 @@
 void Bullet::Update(float deltaTime)
 {
 	//rotation and position of bullet overTime
-	mAngle += mBulletData.mAngularVelocity * deltaTime;
+	mAngle += mBulletData->mAngularVelocity * deltaTime;
 
-	float x = mX + cos(mAngle) * (mBulletData.mSpeed * deltaTime);
-	float y = mY + sin(mAngle) * (mBulletData.mSpeed * deltaTime);
+	float x = mX + cos(mAngle) * (mBulletData->mSpeed * deltaTime);
+	float y = mY + sin(mAngle) * (mBulletData->mSpeed * deltaTime);
 
 	mX = x;
 	mY = y;
 
 	//Destroy bullet when out of screen -- Will need to change it when the tool will appear
-	if (mX + mBulletData.mSize < 0 - mBulletData.mSize || mX - mBulletData.mSize > 760 + mBulletData.mSize || 
-		mY + mBulletData.mSize < 0 - mBulletData.mSize || mY - mBulletData.mSize > GetScreenHeight() + mBulletData.mSize)
+	if (mX + mBulletData->mSize < 0 - mBulletData->mSize || mX - mBulletData->mSize > 760 + mBulletData->mSize ||
+		mY + mBulletData->mSize < 0 - mBulletData->mSize || mY - mBulletData->mSize > GetScreenHeight() + mBulletData->mSize)
 	{
 		mManager->ToEraseObject(shared_from_this());
 	}
@@ -30,11 +30,11 @@ void Bullet::Update(float deltaTime)
 void Bullet::Draw()
 {
 	//Show bullet
-	mSize = mBulletData.mSize;
-	DrawCircle(mX, mY, mSize, mBulletData.mColor);
+	mSize = mBulletData->mSize;
+	DrawCircle(mX, mY, mSize, mBulletData->mColor);
 }
 
-void Bullet::ChangeBulletData(BulletData newData)
+void Bullet::ChangeBulletData(std::shared_ptr<BulletData> newData)
 {
 	mBulletData = newData;
 }

@@ -4,6 +4,60 @@
 #include "imgui.h"
 #include "rlImGui.h"
 
+void ToolInterface::Init()
+{
+    auto orangeBullet = std::make_shared<BulletData>();
+    orangeBullet->mName = "Orange";
+    orangeBullet->mColor = ORANGE;
+    orangeBullet->mSpeed = 200;
+    orangeBullet->mSize = 10;
+    orangeBullet->mAngularVelocity = 0.5f;
+    mAllBullets.push_back(orangeBullet);
+
+    auto purpleBullet = std::make_shared<BulletData>();
+    purpleBullet->mName = "Purple";
+    purpleBullet->mColor = PURPLE;
+    purpleBullet->mSpeed = 200;
+    purpleBullet->mSize = 10;
+    purpleBullet->mAngularVelocity = 0.5f;
+    mAllBullets.push_back(purpleBullet);
+
+    auto blueBullet = std::make_shared<BulletData>();
+    blueBullet->mName = "Blue";
+    blueBullet->mColor = BLUE;
+    blueBullet->mSpeed = 100;
+    blueBullet->mSize = 20;
+    blueBullet->mAngularVelocity = 0.0f;
+    mAllBullets.push_back(blueBullet);
+
+    AttackPatternData arthurPattern2 {};
+    arthurPattern2.bulletData = orangeBullet;
+    arthurPattern2.timeBetweenBullet = 0.15f;
+    arthurPattern2.bulletCount = 2;
+    arthurPattern2.rotationSpeed = 200;
+    arthurPattern2.bulletRotationOffset = 0.0f;
+    mAllAttackPattern.push_back(arthurPattern2);
+
+    AttackPatternData arthurPattern {};
+    arthurPattern.bulletData = purpleBullet;
+    arthurPattern.timeBetweenBullet = 0.15f;
+    arthurPattern.bulletCount = 2;
+    arthurPattern.rotationSpeed = 200;
+    //(PI / 180.0f) to convert in degrees
+    arthurPattern.bulletRotationOffset = 90;
+    mAllAttackPattern.push_back(arthurPattern);
+
+    AttackPatternData clairePattern {};
+    clairePattern.bulletData = blueBullet;
+    clairePattern.timeBetweenBullet = 1.5f;
+    clairePattern.bulletCount = 8;
+    clairePattern.rotationSpeed = 6;
+    clairePattern.bulletRotationOffset = 0.0f;
+    mAllAttackPattern.push_back(clairePattern);
+
+    UpdateBulletSpawner();
+}
+
 void ToolInterface::Update()
 {
 
@@ -25,36 +79,53 @@ void ToolInterface::BulletEditor()
     ImGui::SeparatorText("Creating a bullet");
 
     //create new bullet
-    ImGui::Button("New Bullet +");
+    if (ImGui::Button("New Bullet +"))
+    {
+
+    }
 
     //show all bullet already created
-    const char* items[] = { "Orange", "Purple", "Blue" };
-    static int item_current = 0;
-    ImGui::Combo("Bullets", &item_current, items, IM_ARRAYSIZE(items));
+    std::vector<const char*> bulletNames;
+
+    for (auto& bullet : mAllBullets)
+    {
+        bulletNames.push_back(bullet->mName);
+    }
+
+    ImGui::Combo("Bullets", &mCurrentBulletIndex, bulletNames.data(), bulletNames.size());
 
     //choose Name
     static char str0[128] = "";
     ImGui::InputTextWithHint("Name", "Choose name of bullet", str0, IM_ARRAYSIZE(str0));
 
-    if (ImGui::TreeNodeEx("Bullet data", ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGui::TreeNodeEx("Bullet Data", ImGuiTreeNodeFlags_DefaultOpen))
     {
+        auto& bullet = mAllBullets[mCurrentBulletIndex];
         //choose color
-        static float color[3] = { 1.0f, 0.0f, 0.0f };
-        ImGui::ColorEdit3("Color", color);
+        float color[4] = {
+            bullet->mColor.r / 255.0f,
+            bullet->mColor.g / 255.0f,
+            bullet->mColor.b / 255.0f,
+            bullet->mColor.a / 255.0f
+        };
+        if (ImGui::ColorEdit4("Color", color))
+        {
+            bullet->mColor.r = (unsigned char) (color[0] * 255);
+            bullet->mColor.g = (unsigned char) (color[1] * 255);
+            bullet->mColor.b = (unsigned char) (color[2] * 255);
+            bullet->mColor.a = (unsigned char) (color[3] * 255);
+        }
 
         //choose image
 
         //choose speed
-        static float sliderSpeed = 100.0f;
-        ImGui::SliderFloat("Speed", &sliderSpeed, 0.0f, 500.0f);
+        ImGui::SliderFloat("Speed", &bullet->mSpeed, 0.0f, 500.0f);
 
         //choose size
-        static float sliderSize = 10.0f;
-        ImGui::SliderFloat("Size", &sliderSize, 5.0f, 50.0f);
+        ImGui::SliderFloat("Size", &bullet->mSize, 5.0f, 50.0f);
 
         //choose angular velocity
-        static float dragVelocity = 0.5f;
-        ImGui::DragFloat("Angular Velocity", &dragVelocity, 0.005f, 0.0f, 1.0f);
+        ImGui::DragFloat("Angular Velocity", &bullet->mAngularVelocity, 0.005f, 0.0f, 1.0f);
 
         ImGui::TreePop();
     }
@@ -70,14 +141,8 @@ void ToolInterface::AttackPatternEditor()
     //create new attack pattern
     if (ImGui::Button("New Attack Pattern +"))
     {
-        BulletData orangeBullet {};
-        orangeBullet.mColor = ORANGE;
-        orangeBullet.mSpeed = 200;
-        orangeBullet.mSize = 10;
-        orangeBullet.mAngularVelocity = 0.5f;
-
         AttackPatternData data {};
-        data.bulletData = orangeBullet;
+        data.bulletData = mAllBullets[mCurrentBulletIndex];
 
         mAllAttackPattern.push_back(data);
         UpdateBulletSpawner();

@@ -10,6 +10,7 @@
 class ToolInterface
 {
 public:
+	void Init();
 	void Update();
 	void Draw();
 
@@ -19,8 +20,10 @@ public:
 	void UpdateBulletSpawner();
 
 private:
-	std::vector<BulletData> mAllBullets;
+	std::vector<std::shared_ptr<BulletData>> mAllBullets;
 	std::vector<AttackPatternData> mAllAttackPattern;
 	std::shared_ptr<BulletSpawner> mBulletSpawner;
+
+	int mCurrentBulletIndex = 0;
 };
 

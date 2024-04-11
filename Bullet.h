@@ -9,9 +9,9 @@ public:
 	void Update(float deltaTime) override;
 	void Draw() override;
 
-	void ChangeBulletData(BulletData newData);
+	void ChangeBulletData(std::shared_ptr<BulletData> newData);
 
 public:
-	BulletData mBulletData;
+	std::shared_ptr<BulletData> mBulletData;
 };
 
