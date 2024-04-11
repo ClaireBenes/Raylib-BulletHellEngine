@@ -201,7 +201,6 @@ void BulletEditor()
 
 int attackpatternNumber = 0;
 
-
 void AttackPatternEditor()
 {
     ImGui::Begin("AttackPattern Editor", NULL, ImGuiWindowFlags_NoMove);
@@ -213,29 +212,24 @@ void AttackPatternEditor()
         attackpatternNumber++;
     }
 
-    const char* items[] = { "Orange", "Purple", "Blue" };
-
+    //const char* items[] = { "AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG", "HHHH", "IIII", "JJJJ", "KKKK", "LLLLLLL", "MMMM", "OOOOOOO" };
+    
 
     for (int i = 0; i < attackpatternNumber; i++)
     {
-        if (ImGui::TreeNodeEx("Attack Pattern", ImGuiTreeNodeFlags_DefaultOpen))
+        if (ImGui::TreeNodeEx(std::to_string(i).c_str(), ImGuiTreeNodeFlags_DefaultOpen))
         {
             ImGui::SameLine();
             ImGui::Text(std::to_string(i).c_str());
 
             //show all bullet already created
-            //items[] = {"Orange", "Purple", "Blue"};
-            //item_current = 0;
-
-            //ImGui::Combo("combo 4 (function)", &item_current, [](void* data, int n) { return ((const char**) data)[n]; }, items, IM_ARRAYSIZE(items));
-
-            //wil have to change for bullet data index
-            static int item_current = i;
-            ImGui::Combo("Bullets", &item_current, items, IM_ARRAYSIZE(items));
+            const char* items[] = { "Orange", "Purple", "Blue" };
+            static int everyBullet[100];
+            ImGui::Combo("Bullets", &everyBullet[i], items, IM_ARRAYSIZE(items));
 
             //choose bullet count
-            static int bulletCount = 1;
-            ImGui::InputInt("Bullet Count", &bulletCount);
+            static int bulletCount[1000];
+            ImGui::InputInt("Bullet Count", &bulletCount[i]);
 
             ImGui::TreePop();
         }
