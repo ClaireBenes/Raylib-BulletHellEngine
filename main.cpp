@@ -11,6 +11,8 @@
 #include <vector>
 #include <memory>
 #include <math.h>
+#include <sstream>
+#include <string.h>
 
 
 //Variable
@@ -199,6 +201,7 @@ void BulletEditor()
 
 int attackpatternNumber = 0;
 
+
 void AttackPatternEditor()
 {
     ImGui::Begin("AttackPattern Editor", NULL, ImGuiWindowFlags_NoMove);
@@ -210,17 +213,28 @@ void AttackPatternEditor()
         attackpatternNumber++;
     }
 
+    const char* items[] = { "Orange", "Purple", "Blue" };
+
+
     for (int i = 0; i < attackpatternNumber; i++)
     {
         if (ImGui::TreeNodeEx("Attack Pattern", ImGuiTreeNodeFlags_DefaultOpen))
         {
             ImGui::SameLine();
-            ImGui::Text("0");
+            ImGui::Text(std::to_string(i).c_str());
 
             //show all bullet already created
-            const char* items[] = { "Orange", "Purple", "Blue" };
-            static int item_current = 0;
+            //items[] = {"Orange", "Purple", "Blue"};
+            //item_current = 0;
+
+            //ImGui::Combo("combo 4 (function)", &item_current, [](void* data, int n) { return ((const char**) data)[n]; }, items, IM_ARRAYSIZE(items));
+
+            static int item_current = i;
             ImGui::Combo("Bullets", &item_current, items, IM_ARRAYSIZE(items));
+
+            //choose bullet count
+            static int bulletCount = 1;
+            ImGui::InputInt("Bullet Count", &bulletCount);
 
             ImGui::TreePop();
         }
