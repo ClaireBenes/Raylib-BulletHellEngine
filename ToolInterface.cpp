@@ -68,6 +68,12 @@ void ToolInterface::Draw()
 {
 	rlImGuiBegin();
 
+    mBulletNames.clear();
+    for (auto& bullet : mAllBullets)
+    {
+        mBulletNames.push_back(bullet->mName.c_str());
+    }
+
 	BulletEditor();
 	AttackPatternEditor();
 
@@ -90,14 +96,7 @@ void ToolInterface::BulletEditor()
     }
 
     //show all bullet already created
-    std::vector<const char*> bulletNames;
-
-    for (auto& bullet : mAllBullets)
-    {
-        bulletNames.push_back(bullet->mName.c_str());
-    }
-
-    ImGui::Combo("Bullets", &mCurrentBulletIndex, bulletNames.data(), bulletNames.size());
+    ImGui::Combo("Bullets", &mCurrentBulletIndex, mBulletNames.data(), mBulletNames.size());
 
     auto& bullet = mAllBullets[mCurrentBulletIndex];
 
@@ -165,37 +164,42 @@ void ToolInterface::AttackPatternEditor()
 
         if (ImGui::TreeNodeEx(TextFormat("Attack Pattern %d", i), ImGuiTreeNodeFlags_DefaultOpen))
         {
-            //show all bullet already created
-            const char* items[] = { "Orange", "Purple", "Blue" };
-            static int everyBullet[100];
-            if (ImGui::Combo("Bullets", &everyBullet[i], items, IM_ARRAYSIZE(items)))
+            int bulletIndex = 0;
+            for (int j = 0; j < mAllBullets.size(); j++)
             {
+                if (attackPattern.bulletData == mAllBullets[j])
+                {
+                    bulletIndex = j;
+                    break;
+                }
+            }
+
+            //show all bullet already created
+            if (ImGui::Combo("Bullets", &bulletIndex, mBulletNames.data(), mBulletNames.size()))
+            {
+                attackPattern.bulletData = mAllBullets[bulletIndex];
                 UpdateBulletSpawner();
             }
 
             //choose bullet count
-            //static int bulletCount[100];
             if (ImGui::InputInt("Bullet Count", &attackPattern.bulletCount))
             {
                 UpdateBulletSpawner();
             }
 
             //choose time between bullet
-            //static float fireRate[100] = { 0.5f };
             if (ImGui::DragFloat("Fire Rate", &attackPattern.timeBetweenBullet, 0.005f, 0.0f, 5.0f))
             {
                 UpdateBulletSpawner();
             }
 
             //choose rotation speed
-            //static float dragRotSpeed[100] = { 6.0f };
             if (ImGui::DragFloat("Rotation Speed", &attackPattern.rotationSpeed, 1.0f, -360.0f, 360.0f))
             {
                 UpdateBulletSpawner();
             }
 
             //choose time between bullet
-            //static float rotateOffset[100] = { 0.0f };
             if (ImGui::DragFloat("Rotation Offset", &attackPattern.bulletRotationOffset, 1.0f , 0.0f, 360.0f))
             {
                 UpdateBulletSpawner();

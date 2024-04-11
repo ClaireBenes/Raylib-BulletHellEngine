@@ -24,6 +24,7 @@ private:
 	std::vector<AttackPatternData> mAllAttackPattern;
 	std::shared_ptr<BulletSpawner> mBulletSpawner;
 
+	std::vector<const char*> mBulletNames;
 	int mCurrentBulletIndex = 0;
 	char mNewBulletName[64] = "Elaine";
 };
