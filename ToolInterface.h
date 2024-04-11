@@ -25,5 +25,6 @@ private:
 	std::shared_ptr<BulletSpawner> mBulletSpawner;
 
 	int mCurrentBulletIndex = 0;
+	char mNewBulletName[64] = "Elaine";
 };
 

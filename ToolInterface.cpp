@@ -3,6 +3,7 @@
 #include "raylib.h"
 #include "imgui.h"
 #include "rlImGui.h"
+#include <string>
 
 void ToolInterface::Init()
 {
@@ -81,7 +82,11 @@ void ToolInterface::BulletEditor()
     //create new bullet
     if (ImGui::Button("New Bullet +"))
     {
+        auto newBullet = std::make_shared<BulletData>();
+        newBullet->mName = "New Elaine's Bullet";
 
+        mAllBullets.push_back(newBullet);
+        mCurrentBulletIndex = mAllBullets.size() - 1;
     }
 
     //show all bullet already created
@@ -89,18 +94,23 @@ void ToolInterface::BulletEditor()
 
     for (auto& bullet : mAllBullets)
     {
-        bulletNames.push_back(bullet->mName);
+        bulletNames.push_back(bullet->mName.c_str());
     }
 
     ImGui::Combo("Bullets", &mCurrentBulletIndex, bulletNames.data(), bulletNames.size());
 
+    auto& bullet = mAllBullets[mCurrentBulletIndex];
+
     //choose Name
-    static char str0[128] = "";
-    ImGui::InputTextWithHint("Name", "Choose name of bullet", str0, IM_ARRAYSIZE(str0));
+    char newBulletName[64] = "";
+    strcpy_s(newBulletName, bullet->mName.c_str());
+    if (ImGui::InputTextWithHint("Name", "Choose name of bullet", newBulletName, IM_ARRAYSIZE(newBulletName)))
+    {
+        bullet->mName = newBulletName;
+    }
 
     if (ImGui::TreeNodeEx("Bullet Data", ImGuiTreeNodeFlags_DefaultOpen))
     {
-        auto& bullet = mAllBullets[mCurrentBulletIndex];
         //choose color
         float color[4] = {
             bullet->mColor.r / 255.0f,
