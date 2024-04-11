@@ -34,7 +34,7 @@ void BulletSpawner::SpawnBullets(const AttackPatternData& data)
 	{
 		auto bullet = std::make_shared<Bullet>();
 		bullet->ChangeBulletData(data.bulletData);
-		bullet->mAngle = constantOffset * i + data.bulletRotationOffset;
+		bullet->mAngle = constantOffset * i + (data.bulletRotationOffset * (PI / 180.0f));
 
 		bullet->mX = mX;
 		bullet->mY = mY;
@@ -55,4 +55,10 @@ void BulletSpawner::AddAttackPattern(const AttackPatternData& attackPattern)
 {
 	mAttackPatternData.push_back(attackPattern);
 	mAttackPatternTimer.push_back(attackPattern.timeBetweenBullet);
+}
+
+void BulletSpawner::ClearAttackPatterns()
+{
+	mAttackPatternData.clear();
+	mAttackPatternTimer.clear();
 }

@@ -4,6 +4,11 @@
 #include "imgui.h"
 #include "rlImGui.h"
 
+void ToolInterface::Update()
+{
+
+}
+
 void ToolInterface::Draw()
 {
 	rlImGuiBegin();
@@ -65,39 +70,82 @@ void ToolInterface::AttackPatternEditor()
     //create new attack pattern
     if (ImGui::Button("New Attack Pattern +"))
     {
-        mAttackpatternNumber++;
+        BulletData orangeBullet {};
+        orangeBullet.mColor = ORANGE;
+        orangeBullet.mSpeed = 200;
+        orangeBullet.mSize = 10;
+        orangeBullet.mAngularVelocity = 0.5f;
+
+        AttackPatternData data {};
+        data.bulletData = orangeBullet;
+
+        mAllAttackPattern.push_back(data);
+        UpdateBulletSpawner();
     }
 
 
-    for (int i = 0; i < mAttackpatternNumber; i++)
+    for (int i = 0; i < mAllAttackPattern.size(); i++)
     {
+        AttackPatternData& attackPattern = mAllAttackPattern[i];
+
         if (ImGui::TreeNodeEx(TextFormat("Attack Pattern %d", i), ImGuiTreeNodeFlags_DefaultOpen))
         {
             //show all bullet already created
             const char* items[] = { "Orange", "Purple", "Blue" };
             static int everyBullet[100];
-            ImGui::Combo("Bullets", &everyBullet[i], items, IM_ARRAYSIZE(items));
+            if (ImGui::Combo("Bullets", &everyBullet[i], items, IM_ARRAYSIZE(items)))
+            {
+                UpdateBulletSpawner();
+            }
 
             //choose bullet count
-            static int bulletCount[100];
-            ImGui::InputInt("Bullet Count", &bulletCount[i]);
+            //static int bulletCount[100];
+            if (ImGui::InputInt("Bullet Count", &attackPattern.bulletCount))
+            {
+                UpdateBulletSpawner();
+            }
 
             //choose time between bullet
-            static float fireRate[100] = { 0.5f };
-            ImGui::SliderFloat("Fire Rate", &fireRate[i], 0.0f, 20.0f);
+            //static float fireRate[100] = { 0.5f };
+            if (ImGui::DragFloat("Fire Rate", &attackPattern.timeBetweenBullet, 0.005f, 0.0f, 5.0f))
+            {
+                UpdateBulletSpawner();
+            }
 
             //choose rotation speed
-            static float dragRotSpeed[100] = { 6.0f };
-            ImGui::DragFloat("Rotation Speed", &dragRotSpeed[i], 0.05f, 0.0f, 20.0f);
+            //static float dragRotSpeed[100] = { 6.0f };
+            if (ImGui::DragFloat("Rotation Speed", &attackPattern.rotationSpeed, 1.0f, -360.0f, 360.0f))
+            {
+                UpdateBulletSpawner();
+            }
 
-            //90 * (PI / 180.0f)
             //choose time between bullet
-            static float rotateOffset[100] = { 0.0f };
-            ImGui::SliderFloat("Rotation Offset", &rotateOffset[i], 0.0f, 360.0f);
+            //static float rotateOffset[100] = { 0.0f };
+            if (ImGui::DragFloat("Rotation Offset", &attackPattern.bulletRotationOffset, 1.0f , 0.0f, 360.0f))
+            {
+                UpdateBulletSpawner();
+            }
 
             ImGui::TreePop();
         }
     }
 
     ImGui::End();
+}
+
+void ToolInterface::SetBulletSpawner(std::shared_ptr<BulletSpawner> bulletSpawner)
+{
+    mBulletSpawner = bulletSpawner;
+}
+
+void ToolInterface::UpdateBulletSpawner()
+{
+    printf("Update of bullet spawner \n");
+
+    mBulletSpawner->ClearAttackPatterns();
+
+    for (int pattern = 0; pattern < mAllAttackPattern.size(); pattern++)
+    {
+        mBulletSpawner->AddAttackPattern(mAllAttackPattern[pattern]);
+    }
 }

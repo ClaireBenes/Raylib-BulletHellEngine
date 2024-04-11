@@ -3,7 +3,6 @@
 #include "rlImGui.h"
 
 #include "Bullet.h"
-#include "BulletData.h"
 #include "BulletSpawner.h"
 #include "Player.h"
 #include "ToolInterface.h"
@@ -78,10 +77,11 @@ int main()
     //********** Variables **********//
 
     auto bulletSpawner = std::make_shared<BulletSpawner>(780 / 2.0f, screenHeight / 3.0f);
+    toolInterface.SetBulletSpawner(bulletSpawner);
     //To erase later -- will be made in run time
-    bulletSpawner->AddAttackPattern(arthurPattern);
-    bulletSpawner->AddAttackPattern(arthurPattern2);
-    bulletSpawner->AddAttackPattern(clairePattern);
+    //bulletSpawner->AddAttackPattern(arthurPattern);
+    //bulletSpawner->AddAttackPattern(arthurPattern2);
+    //bulletSpawner->AddAttackPattern(clairePattern);
 
     auto player = std::make_shared<Player>(780 / 2.0f, screenHeight / 1.1f);
 
@@ -122,6 +122,8 @@ void Draw()
 
     gameManager.Draw();
     toolInterface.Draw();
+
+    DrawText(TextFormat("FPS : %d", GetFPS()), 10, 10, 20, RED);
 
     EndDrawing();
 }

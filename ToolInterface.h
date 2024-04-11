@@ -1,4 +1,12 @@
 #pragma once
+
+#include "AttackPatternData.h"
+#include "BulletData.h"
+#include "BulletSpawner.h"
+#include "GameManager.h"
+
+#include <vector>
+
 class ToolInterface
 {
 public:
@@ -7,9 +15,12 @@ public:
 
 	void BulletEditor();
 	void AttackPatternEditor();
+	void SetBulletSpawner(std::shared_ptr<BulletSpawner> bulletSpawner);
+	void UpdateBulletSpawner();
 
 private:
-	int mAttackpatternNumber = 0;
-	//std::vector<BulletData> allBullets;
+	std::vector<BulletData> mAllBullets;
+	std::vector<AttackPatternData> mAllAttackPattern;
+	std::shared_ptr<BulletSpawner> mBulletSpawner;
 };
 

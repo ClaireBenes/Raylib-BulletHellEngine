@@ -17,6 +17,7 @@ public:
 
 	void SpawnBullets(const AttackPatternData& data);
 	void AddAttackPattern(const AttackPatternData& attackPattern);
+	void ClearAttackPatterns();
 
 public:
 	const float SPAWN_TIME = 0.5f;

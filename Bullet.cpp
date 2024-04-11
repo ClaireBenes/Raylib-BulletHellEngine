@@ -21,7 +21,7 @@ void Bullet::Update(float deltaTime)
 
 	//Check collision between player and bullets
 	auto player = Player::GetInstance();
-	if (CheckCollisionCircles({ mX, mY }, mSize ,{ player->mX, player->mY }, player->mSize))
+	if (CheckCollisionPointCircle({ player->mX, player->mY }, { mX, mY }, mSize))
 	{
 		player->GetHurt();
 	}
