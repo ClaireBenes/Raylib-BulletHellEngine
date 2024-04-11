@@ -14,11 +14,12 @@
 
 
 //Variable
-int screenWidth = 1560;
+int screenWidth = 1700;
 //int screenWidth = 780;
 int screenHeight = 960;
 
 GameManager gameManager;
+//std::vector<BulletData> allBullets;
 
 
 //Function
@@ -27,6 +28,8 @@ void Update();
 void Draw();
 void Unload();
 void CallImGui();
+void BulletEditor();
+void AttackPatternEditor();
 
 int main()
 {
@@ -144,19 +147,86 @@ void CallImGui()
         //ImGuiWindowFlags_NoBackground
     };
 
-    //ImGui::Begin("BulletEditor");
-    ImGui::Begin("BulletEditor", NULL, windowFlags);
-    ImGui::Text("Going to have bullet editor there");
-    ImGui::End();
+    BulletEditor();
+    AttackPatternEditor();
 
-    //ImGui::Begin("AttackPattern Editor");
-    ImGui::Begin("AttackPattern Editor", NULL, windowFlags);
-    ImGui::Text("Going to have Attack Pattern editor there");
-    ImGui::End();
-
-    //ImGui::ShowDemoWindow();
-
+    ImGui::ShowDemoWindow();
     rlImGuiEnd();
+}
+
+void BulletEditor()
+{
+    ImGui::Begin("BulletEditor", NULL, ImGuiWindowFlags_NoMove);
+    ImGui::SeparatorText("Creating a bullet");
+
+    //create new bullet
+    ImGui::Button("New Bullet +");
+
+    //show all bullet already created
+    const char* items[] = { "Orange", "Purple", "Blue" };
+    static int item_current = 0;
+    ImGui::Combo("Bullets", &item_current, items, IM_ARRAYSIZE(items));
+
+    //choose Name
+    static char str0[128] = "";
+    ImGui::InputTextWithHint("Name", "Choose name of bullet", str0, IM_ARRAYSIZE(str0));
+
+    if (ImGui::TreeNodeEx("Bullet data", ImGuiTreeNodeFlags_DefaultOpen))
+    {
+        //choose color
+        static float color[3] = { 1.0f, 0.0f, 0.0f };
+        ImGui::ColorEdit3("Color", color);
+
+        //choose image
+
+        //choose speed
+        static float slider_speed = 100.0f;
+        ImGui::SliderFloat("Speed", &slider_speed, 0.0f, 500.0f);
+
+        //choose size
+        static float slider_size = 10.0f;
+        ImGui::SliderFloat("Size", &slider_size, 5.0f, 50.0f);
+
+        //choose angular velocity
+        static float drag_velocity = 0.5f;
+        ImGui::DragFloat("Angular Velocity", &drag_velocity, 0.005f, 0.0f, 1.0f);
+
+        ImGui::TreePop();
+    }
+
+    ImGui::End();
+}
+
+int attackpatternNumber = 0;
+
+void AttackPatternEditor()
+{
+    ImGui::Begin("AttackPattern Editor", NULL, ImGuiWindowFlags_NoMove);
+    ImGui::SeparatorText("Creating an attack pattern");
+
+    //create new attack pattern
+    if (ImGui::Button("New Attack Pattern +"))
+    {
+        attackpatternNumber++;
+    }
+
+    for (int i = 0; i < attackpatternNumber; i++)
+    {
+        if (ImGui::TreeNodeEx("Attack Pattern", ImGuiTreeNodeFlags_DefaultOpen))
+        {
+            ImGui::SameLine();
+            ImGui::Text("0");
+
+            //show all bullet already created
+            const char* items[] = { "Orange", "Purple", "Blue" };
+            static int item_current = 0;
+            ImGui::Combo("Bullets", &item_current, items, IM_ARRAYSIZE(items));
+
+            ImGui::TreePop();
+        }
+    }
+
+    ImGui::End();
 }
 
 
