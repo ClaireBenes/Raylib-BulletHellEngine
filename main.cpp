@@ -36,10 +36,7 @@ int main()
 
     auto bulletSpawner = std::make_shared<BulletSpawner>(780 / 2.0f, screenHeight / 3.0f);
     toolInterface.SetBulletSpawner(bulletSpawner);
-    //To erase later -- will be made in run time
-    //bulletSpawner->AddAttackPattern(arthurPattern);
-    //bulletSpawner->AddAttackPattern(arthurPattern2);
-    //bulletSpawner->AddAttackPattern(clairePattern);
+    //toolInterface.SetGameManager(gameManager);
 
     auto player = std::make_shared<Player>(780 / 2.0f, screenHeight / 1.1f);
 

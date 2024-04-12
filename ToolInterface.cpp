@@ -59,11 +59,6 @@ void ToolInterface::Init()
     UpdateBulletSpawner();
 }
 
-void ToolInterface::Update()
-{
-
-}
-
 void ToolInterface::Draw()
 {
 	rlImGuiBegin();
@@ -74,6 +69,8 @@ void ToolInterface::Draw()
         mBulletNames.push_back(bullet->mName.c_str());
     }
 
+    //ImGui::ShowDemoWindow();
+
 	BulletEditor();
 	AttackPatternEditor();
 
@@ -82,7 +79,7 @@ void ToolInterface::Draw()
 
 void ToolInterface::BulletEditor()
 {
-    ImGui::Begin("BulletEditor", NULL, ImGuiWindowFlags_NoMove);
+    ImGui::Begin("BulletEditor", NULL, { ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize });
     ImGui::SeparatorText("Creating a bullet");
 
     //create new bullet
@@ -136,6 +133,54 @@ void ToolInterface::BulletEditor()
         //choose angular velocity
         ImGui::DragFloat("Angular Velocity", &bullet->mAngularVelocity, 0.005f, 0.0f, 1.0f);
 
+
+        //delete bullet
+        bool isBulletUsed = false;
+        bool isLastBullet = false;
+
+        if (ImGui::Button("Delete Bullet"))
+        {
+            mAllBullets.erase(mAllBullets.begin() + mCurrentBulletIndex);
+            UpdateBulletSpawner();
+        //    isBulletUsed = false;
+        //    isLastBullet = false;
+
+        //    for (int i = 0; i < mAllAttackPattern.size(); i++)
+        //    {
+        //        if (mAllAttackPattern[i].bulletData == bullet)
+        //        {
+        //            isBulletUsed = true;
+        //            break;
+        //        }
+        //    }
+
+        //    if (!isBulletUsed)
+        //    {
+        //        if (mAllBullets.size() > 1)
+        //        {
+        //            isLastBullet = false;
+
+        //            //mAllBullets.erase(mAllBullets.begin() + mCurrentBulletIndex);
+        //            mAllBullets.erase(mAllBullets.begin());
+        //            UpdateBulletSpawner();
+        //        }
+        //        else
+        //        {
+        //            isLastBullet = true;
+        //        }
+        //    }
+        }
+        //if (isBulletUsed)
+        //{
+        //    ImGui::SameLine();
+        //    ImGui::Text("Stop using this bullet so you can delete it.");
+        //}
+        //else if (isLastBullet)
+        //{
+        //    ImGui::SameLine();
+        //    ImGui::Text("You need to keep at least one bullet.");
+        //}
+
         ImGui::TreePop();
     }
 
@@ -144,7 +189,7 @@ void ToolInterface::BulletEditor()
 
 void ToolInterface::AttackPatternEditor()
 {
-    ImGui::Begin("AttackPattern Editor", NULL, ImGuiWindowFlags_NoMove);
+    ImGui::Begin("AttackPattern Editor", NULL, { ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize });
     ImGui::SeparatorText("Creating an attack pattern");
 
     //create new attack pattern
@@ -161,6 +206,7 @@ void ToolInterface::AttackPatternEditor()
     for (int i = 0; i < mAllAttackPattern.size(); i++)
     {
         AttackPatternData& attackPattern = mAllAttackPattern[i];
+        attackPattern.currentAttackPatternIndex = i;
 
         if (ImGui::TreeNodeEx(TextFormat("Attack Pattern %d", i), ImGuiTreeNodeFlags_DefaultOpen))
         {
@@ -202,6 +248,14 @@ void ToolInterface::AttackPatternEditor()
             //choose time between bullet
             if (ImGui::DragFloat("Rotation Offset", &attackPattern.bulletRotationOffset, 1.0f , 0.0f, 360.0f))
             {
+                UpdateBulletSpawner();
+            }
+
+            //delete attack pattern
+            if (ImGui::Button("Delete Attack Pattern"))
+            {
+                //mGameManager.ToEraseObject(attackPattern);
+                mAllAttackPattern.erase(mAllAttackPattern.begin() + attackPattern.currentAttackPatternIndex);
                 UpdateBulletSpawner();
             }
 
