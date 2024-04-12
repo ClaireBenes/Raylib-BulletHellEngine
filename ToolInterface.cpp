@@ -12,7 +12,7 @@ void ToolInterface::Init()
     orangeBullet->mColor = ORANGE;
     orangeBullet->mSpeed = 200;
     orangeBullet->mSize = 16;
-    orangeBullet->mAngularVelocity = 0.5f;
+    orangeBullet->mAngularVelocity = 20.0f;
     mAllBullets.push_back(orangeBullet);
 
     auto purpleBullet = std::make_shared<BulletData>();
@@ -20,7 +20,7 @@ void ToolInterface::Init()
     purpleBullet->mColor = PURPLE;
     purpleBullet->mSpeed = 200;
     purpleBullet->mSize = 16;
-    purpleBullet->mAngularVelocity = 0.5f;
+    purpleBullet->mAngularVelocity = 20.0f;
     mAllBullets.push_back(purpleBullet);
 
     auto blueBullet = std::make_shared<BulletData>();
@@ -73,7 +73,7 @@ void ToolInterface::Draw()
         mBulletNames.push_back(bullet->mName.c_str());
     }
 
-    ImGui::ShowDemoWindow();
+    //ImGui::ShowDemoWindow();
 
 	BulletEditor();
 	AttackPatternEditor();
@@ -95,6 +95,8 @@ void ToolInterface::BulletEditor()
 
         mAllBullets.push_back(newBullet);
         mCurrentBulletIndex = mAllBullets.size() - 1;
+
+        UpdateBulletRenderTexture();
     }
 
     //show all bullet already created

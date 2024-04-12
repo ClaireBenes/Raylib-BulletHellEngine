@@ -31,16 +31,16 @@ void Bullet::Draw()
 {
 	//Show bullet
 	mSize = mBulletData->mSize;
-	DrawCircle(mX, mY, mSize, BLANK);
 
 	Rectangle source { 0, 0, 16, 16 };
 	Rectangle dest { mX, mY, mSize * 2.0f, mSize * 2.0f };
-	dest.x -= dest.width / 2.0f;
-	dest.y -= dest.height / 2.0f;
-	Vector2 origin { 0.5f, 0.5f };
+	//DrawRectangleLinesEx(dest, 2.0f, RED);
+	Vector2 origin { mSize, mSize };
 
-	DrawTexturePro(mBulletData->mInnerImage, source, dest, origin, 0, WHITE);
-	DrawTexturePro(mBulletData->mOuterImage, source, dest, origin, 0, mBulletData->mColor);
+	//DrawCircleLines(mX, mY, mSize, RED);
+
+	DrawTexturePro(mBulletData->mInnerImage, source, dest, origin, mAngle * (180/PI), WHITE);
+	DrawTexturePro(mBulletData->mOuterImage, source, dest, origin, mAngle * (180/PI), mBulletData->mColor);
 }
 
 void Bullet::ChangeBulletData(std::shared_ptr<BulletData> newData)
