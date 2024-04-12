@@ -18,6 +18,7 @@ void Player::Update(float deltaTime)
 	{
 		if (GetMouseX() > 780)
 		{
+			mInvincibilityTime = INVINCIBILITY_TIME / 2;
 			mIsInvincible = true;
 			mX -= (mX - (780 / 2.0f)) * mRespawnSpeed * deltaTime;
 			mY -= (mY - (960 / 1.1f)) * mRespawnSpeed * deltaTime;
@@ -44,7 +45,6 @@ void Player::Update(float deltaTime)
 			mRespawnTime -= deltaTime;
 			if (mRespawnTime <= 0.0f)
 			{
-				mRespawnTime += RESPAWN_TIME;
 				mIsHurt = false;
 			}
 		}
@@ -53,7 +53,6 @@ void Player::Update(float deltaTime)
 		mInvincibilityTime -= deltaTime;
 		if (mInvincibilityTime <= 0.0f && GetMouseX() < 780)
 		{
-			mInvincibilityTime += INVINCIBILITY_TIME;
 			mIsInvincible = false;
 		}
 	}
@@ -90,6 +89,9 @@ void Player::GetHurt()
 	//if not invicible, get hurt
 	if (!mIsInvincible)
 	{
+		mRespawnTime = RESPAWN_TIME;
+		mInvincibilityTime = INVINCIBILITY_TIME;
+
 		mIsHurt = true;
 		mIsInvincible = true;
 	}
