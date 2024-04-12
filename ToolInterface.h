@@ -18,6 +18,8 @@ public:
 	void SetBulletSpawner(std::shared_ptr<BulletSpawner> bulletSpawner);
 	void UpdateBulletSpawner();
 
+	void UpdateBulletRenderTexture();
+
 private:
 	std::vector<std::shared_ptr<BulletData>> mAllBullets;
 	std::vector<AttackPatternData> mAllAttackPattern;
@@ -26,5 +28,7 @@ private:
 	std::vector<const char*> mBulletNames;
 	int mCurrentBulletIndex = 0;
 	char mNewBulletName[64] = "Elaine";
+
+	RenderTexture2D mBulletRenderTexture;
 };
 

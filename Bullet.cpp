@@ -33,11 +33,14 @@ void Bullet::Draw()
 	mSize = mBulletData->mSize;
 	DrawCircle(mX, mY, mSize, BLANK);
 
-	DrawTextureEx(mBulletData->mInnerImage, { mX - mSize * mBulletData->mInnerImage.width / 6.5f,
-		mY - mSize * mBulletData->mInnerImage.height / 6.5f }, 0, mSize * 0.3f, WHITE);
-	DrawTextureEx(mBulletData->mOuterImage, { mX - mSize * mBulletData->mOuterImage.width / 6.5f,
-		mY - mSize * mBulletData->mOuterImage.height / 6.5f }, 0, mSize * 0.3f, mBulletData->mColor);
+	Rectangle source { 0, 0, 16, 16 };
+	Rectangle dest { mX, mY, mSize * 2.0f, mSize * 2.0f };
+	dest.x -= dest.width / 2.0f;
+	dest.y -= dest.height / 2.0f;
+	Vector2 origin { 0.5f, 0.5f };
 
+	DrawTexturePro(mBulletData->mInnerImage, source, dest, origin, 0, WHITE);
+	DrawTexturePro(mBulletData->mOuterImage, source, dest, origin, 0, mBulletData->mColor);
 }
 
 void Bullet::ChangeBulletData(std::shared_ptr<BulletData> newData)

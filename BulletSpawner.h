@@ -26,5 +26,6 @@ public:
 private:
 	std::vector<AttackPatternData> mAttackPatternData;
 	std::vector<float> mAttackPatternTimer;
+	float mScreenWidth = 0;
 };
 

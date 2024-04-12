@@ -5,16 +5,13 @@
 #include "rlImGui.h"
 #include <string>
 
-Texture2D innerBulletTexture;
-Texture2D outerBulletTexture;
-
 void ToolInterface::Init()
 {
     auto orangeBullet = std::make_shared<BulletData>();
     orangeBullet->mName = "Orange";
     orangeBullet->mColor = ORANGE;
     orangeBullet->mSpeed = 200;
-    orangeBullet->mSize = 10;
+    orangeBullet->mSize = 16;
     orangeBullet->mAngularVelocity = 0.5f;
     mAllBullets.push_back(orangeBullet);
 
@@ -22,7 +19,7 @@ void ToolInterface::Init()
     purpleBullet->mName = "Purple";
     purpleBullet->mColor = PURPLE;
     purpleBullet->mSpeed = 200;
-    purpleBullet->mSize = 10;
+    purpleBullet->mSize = 16;
     purpleBullet->mAngularVelocity = 0.5f;
     mAllBullets.push_back(purpleBullet);
 
@@ -32,7 +29,7 @@ void ToolInterface::Init()
     blueBullet->mName = "Blue";
     blueBullet->mColor = BLUE;
     blueBullet->mSpeed = 100;
-    blueBullet->mSize = 10;
+    blueBullet->mSize = 32;
     blueBullet->mAngularVelocity = 0.0f;
     mAllBullets.push_back(blueBullet);
 
@@ -49,7 +46,6 @@ void ToolInterface::Init()
     arthurPattern.timeBetweenBullet = 0.15f;
     arthurPattern.bulletCount = 2;
     arthurPattern.rotationSpeed = 200;
-    //(PI / 180.0f) to convert in degrees
     arthurPattern.bulletRotationOffset = 90;
     mAllAttackPattern.push_back(arthurPattern);
 
@@ -61,14 +57,10 @@ void ToolInterface::Init()
     clairePattern.bulletRotationOffset = 0.0f;
     mAllAttackPattern.push_back(clairePattern);
 
-    for (int i = 0; i < mAllBullets.size(); i++)
-    {
-        SetTextureFilter(innerBulletTexture, TEXTURE_FILTER_POINT);
-        SetTextureFilter(outerBulletTexture, TEXTURE_FILTER_POINT);
-    }
-   
-
     UpdateBulletSpawner();
+
+    mBulletRenderTexture = LoadRenderTexture(100, 100);
+    UpdateBulletRenderTexture();
 }
 
 void ToolInterface::Draw()
@@ -81,7 +73,7 @@ void ToolInterface::Draw()
         mBulletNames.push_back(bullet->mName.c_str());
     }
 
-    //ImGui::ShowDemoWindow();
+    ImGui::ShowDemoWindow();
 
 	BulletEditor();
 	AttackPatternEditor();
@@ -105,15 +97,13 @@ void ToolInterface::BulletEditor()
         mCurrentBulletIndex = mAllBullets.size() - 1;
     }
 
-
-
     //show all bullet already created
-    ImGui::Combo("Bullets", &mCurrentBulletIndex, mBulletNames.data(), mBulletNames.size());
+    if (ImGui::Combo("Bullets", &mCurrentBulletIndex, mBulletNames.data(), mBulletNames.size()))
+    {
+        UpdateBulletRenderTexture();
+    }
 
     auto& bullet = mAllBullets[mCurrentBulletIndex];
-
-    //DrawTexture(innerBulletTexture, bullet->mX - (innerBulletTexture.width / 2), mY - (innerBulletTexture.height / 2), WHITE);
-    //DrawTexture(outerBulletTexture, mX - (outerBulletTexture.width / 2), mY - (outerBulletTexture.height / 2), mBulletData->mColor);
 
     //choose Name
     char newBulletName[64] = "";
@@ -138,15 +128,20 @@ void ToolInterface::BulletEditor()
             bullet->mColor.g = (unsigned char) (color[1] * 255);
             bullet->mColor.b = (unsigned char) (color[2] * 255);
             bullet->mColor.a = (unsigned char) (color[3] * 255);
+
+            UpdateBulletRenderTexture();
         }
 
         //choose image
+        //rlImGuiImageRect(&bullet->mInnerImage, 160, 160, Rectangle { 0, 0, 16, 16 });
+        //rlImGuiImage(&bullet->mOuterImage);
+        rlImGuiImageRenderTexture(&mBulletRenderTexture);
 
         //choose speed
         ImGui::SliderFloat("Speed", &bullet->mSpeed, 0.0f, 500.0f);
 
         //choose size
-        ImGui::SliderFloat("Size", &bullet->mSize, 5.0f, 50.0f);
+        ImGui::DragFloat("Size", &bullet->mSize, 1.0f, 5.0f, 64.0f);
 
         //choose angular velocity
         ImGui::DragFloat("Angular Velocity", &bullet->mAngularVelocity, 0.005f, 0.0f, 1.0f);
@@ -220,7 +215,7 @@ void ToolInterface::BulletEditor()
 
 void ToolInterface::AttackPatternEditor()
 {
-    ImGui::Begin("AttackPattern Editor", NULL, { ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize });
+    ImGui::Begin("AttackPattern Editor", NULL, { ImGuiWindowFlags_NoMove });
     ImGui::SeparatorText("Creating an attack pattern");
 
     //create new attack pattern
@@ -312,4 +307,17 @@ void ToolInterface::UpdateBulletSpawner()
     {
         mBulletSpawner->AddAttackPattern(mAllAttackPattern[pattern]);
     }
+}
+
+void ToolInterface::UpdateBulletRenderTexture()
+{
+    const auto& bullet = mAllBullets[mCurrentBulletIndex];
+
+    BeginTextureMode(mBulletRenderTexture);
+    ClearBackground({29, 47, 73, 255});
+
+    DrawTextureEx(bullet->mInnerImage, { 0, 0 }, 0, mBulletRenderTexture.texture.width / bullet->mInnerImage.width, WHITE);
+    DrawTextureEx(bullet->mOuterImage, { 0, 0 }, 0, mBulletRenderTexture.texture.width / bullet->mOuterImage.width, bullet->mColor);
+
+    EndTextureMode();
 }
