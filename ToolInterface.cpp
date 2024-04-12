@@ -143,6 +143,7 @@ void ToolInterface::BulletEditor()
             isBulletUsed = false;
             isLastBullet = false;
 
+            //check if bullet is not used by any attack pattern
             for (int i = 0; i < mAllAttackPattern.size(); i++)
             {
                 if (mAllAttackPattern[i].bulletData == bullet)
@@ -152,19 +153,24 @@ void ToolInterface::BulletEditor()
                 }
             }
 
+            //if bullet is not used
             if (!isBulletUsed)
             {
+                //if there is more than 1 bullet left
                 if (mAllBullets.size() > 1)
                 {
                     isLastBullet = false;
 
+                    //check if we want to delete the last bullet or not
                     if (bullet == mAllBullets.back())
                     {
                         mCurrentBulletIndex = 0;
+                        //delete last bullet
                         mAllBullets.pop_back();
                     }
                     else
                     {
+                        //delete current bullet
                         mAllBullets.erase(mAllBullets.begin() + mCurrentBulletIndex);
                         UpdateBulletSpawner();
                     }
@@ -175,11 +181,13 @@ void ToolInterface::BulletEditor()
                 }
             }
         }
+        //if the bullet is being used --> can't delete
         if (isBulletUsed)
         {
             ImGui::SameLine();
             ImGui::Text("Stop using this bullet so you can delete it.");
         }
+        //if only one bullet is left --> can't delete
         else if (isLastBullet)
         {
             ImGui::SameLine();
@@ -207,12 +215,13 @@ void ToolInterface::AttackPatternEditor()
         UpdateBulletSpawner();
     }
 
-
+    // for every attack pattern
     for (int i = 0; i < mAllAttackPattern.size(); i++)
     {
         AttackPatternData& attackPattern = mAllAttackPattern[i];
         attackPattern.currentAttackPatternIndex = i;
 
+        //create a tree with all datas
         if (ImGui::TreeNodeEx(TextFormat("Attack Pattern %d", i), ImGuiTreeNodeFlags_DefaultOpen))
         {
             int bulletIndex = 0;
@@ -259,7 +268,6 @@ void ToolInterface::AttackPatternEditor()
             //delete attack pattern
             if (ImGui::Button("Delete Attack Pattern"))
             {
-                //mGameManager.ToEraseObject(attackPattern);
                 mAllAttackPattern.erase(mAllAttackPattern.begin() + attackPattern.currentAttackPatternIndex);
                 UpdateBulletSpawner();
             }
