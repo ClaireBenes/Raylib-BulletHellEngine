@@ -35,17 +35,17 @@ void ToolInterface::Init()
 
     AttackPatternData arthurPattern2 {};
     arthurPattern2.bulletData = orangeBullet;
-    arthurPattern2.timeBetweenBullet = 0.15f;
+    arthurPattern2.timeBetweenBullet = 0.100f;
     arthurPattern2.bulletCount = 2;
-    arthurPattern2.rotationSpeed = 200;
+    arthurPattern2.rotationSpeed = 65;
     arthurPattern2.bulletRotationOffset = 0.0f;
     mAllAttackPattern.push_back(arthurPattern2);
 
     AttackPatternData arthurPattern {};
     arthurPattern.bulletData = purpleBullet;
-    arthurPattern.timeBetweenBullet = 0.15f;
+    arthurPattern.timeBetweenBullet = 0.100f;
     arthurPattern.bulletCount = 2;
-    arthurPattern.rotationSpeed = 200;
+    arthurPattern.rotationSpeed = 65;
     arthurPattern.bulletRotationOffset = 90;
     mAllAttackPattern.push_back(arthurPattern);
 
@@ -133,18 +133,16 @@ void ToolInterface::BulletEditor()
         }
 
         //choose image
-        //rlImGuiImageRect(&bullet->mInnerImage, 160, 160, Rectangle { 0, 0, 16, 16 });
-        //rlImGuiImage(&bullet->mOuterImage);
         rlImGuiImageRenderTexture(&mBulletRenderTexture);
 
         //choose speed
-        ImGui::SliderFloat("Speed", &bullet->mSpeed, 0.0f, 500.0f);
+        ImGui::DragFloat("Speed", &bullet->mSpeed, 1.0f, 0.0f, 500.0f);
 
         //choose size
         ImGui::DragFloat("Size", &bullet->mSize, 1.0f, 5.0f, 64.0f);
 
         //choose angular velocity
-        ImGui::DragFloat("Angular Velocity", &bullet->mAngularVelocity, 0.005f, 0.0f, 1.0f);
+        ImGui::DragFloat("Angular Velocity", &bullet->mAngularVelocity, 1.0f, -90.0f, 90.0f);
 
 
         //delete bullet
@@ -215,7 +213,7 @@ void ToolInterface::BulletEditor()
 
 void ToolInterface::AttackPatternEditor()
 {
-    ImGui::Begin("AttackPattern Editor", NULL, { ImGuiWindowFlags_NoMove });
+    ImGui::Begin("AttackPattern Editor", NULL, { ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize });
     ImGui::SeparatorText("Creating an attack pattern");
 
     //create new attack pattern
