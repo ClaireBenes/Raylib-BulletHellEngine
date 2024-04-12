@@ -75,7 +75,7 @@ void Update()
 void Draw() 
 {
     BeginDrawing();
-    ClearBackground(BLACK);
+    ClearBackground({ 7, 10, 25, 255 });
 
     gameManager.Draw();
     toolInterface.Draw();

@@ -31,7 +31,13 @@ void Bullet::Draw()
 {
 	//Show bullet
 	mSize = mBulletData->mSize;
-	DrawCircle(mX, mY, mSize, mBulletData->mColor);
+	DrawCircle(mX, mY, mSize, BLANK);
+
+	DrawTextureEx(mBulletData->mInnerImage, { mX - mSize * mBulletData->mInnerImage.width / 6.5f,
+		mY - mSize * mBulletData->mInnerImage.height / 6.5f }, 0, mSize * 0.3f, WHITE);
+	DrawTextureEx(mBulletData->mOuterImage, { mX - mSize * mBulletData->mOuterImage.width / 6.5f,
+		mY - mSize * mBulletData->mOuterImage.height / 6.5f }, 0, mSize * 0.3f, mBulletData->mColor);
+
 }
 
 void Bullet::ChangeBulletData(std::shared_ptr<BulletData> newData)

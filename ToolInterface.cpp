@@ -5,6 +5,9 @@
 #include "rlImGui.h"
 #include <string>
 
+Texture2D innerBulletTexture;
+Texture2D outerBulletTexture;
+
 void ToolInterface::Init()
 {
     auto orangeBullet = std::make_shared<BulletData>();
@@ -24,10 +27,12 @@ void ToolInterface::Init()
     mAllBullets.push_back(purpleBullet);
 
     auto blueBullet = std::make_shared<BulletData>();
+    blueBullet->mInnerImage = LoadTexture("resources/gear-bullet-inner.png");
+    blueBullet->mOuterImage = LoadTexture("resources/gear-bullet-outer.png");
     blueBullet->mName = "Blue";
     blueBullet->mColor = BLUE;
     blueBullet->mSpeed = 100;
-    blueBullet->mSize = 20;
+    blueBullet->mSize = 10;
     blueBullet->mAngularVelocity = 0.0f;
     mAllBullets.push_back(blueBullet);
 
@@ -56,6 +61,13 @@ void ToolInterface::Init()
     clairePattern.bulletRotationOffset = 0.0f;
     mAllAttackPattern.push_back(clairePattern);
 
+    for (int i = 0; i < mAllBullets.size(); i++)
+    {
+        SetTextureFilter(innerBulletTexture, TEXTURE_FILTER_POINT);
+        SetTextureFilter(outerBulletTexture, TEXTURE_FILTER_POINT);
+    }
+   
+
     UpdateBulletSpawner();
 }
 
@@ -77,6 +89,7 @@ void ToolInterface::Draw()
 	rlImGuiEnd();
 }
 
+
 void ToolInterface::BulletEditor()
 {
     ImGui::Begin("BulletEditor", NULL, { ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize });
@@ -92,10 +105,15 @@ void ToolInterface::BulletEditor()
         mCurrentBulletIndex = mAllBullets.size() - 1;
     }
 
+
+
     //show all bullet already created
     ImGui::Combo("Bullets", &mCurrentBulletIndex, mBulletNames.data(), mBulletNames.size());
 
     auto& bullet = mAllBullets[mCurrentBulletIndex];
+
+    //DrawTexture(innerBulletTexture, bullet->mX - (innerBulletTexture.width / 2), mY - (innerBulletTexture.height / 2), WHITE);
+    //DrawTexture(outerBulletTexture, mX - (outerBulletTexture.width / 2), mY - (outerBulletTexture.height / 2), mBulletData->mColor);
 
     //choose Name
     char newBulletName[64] = "";
