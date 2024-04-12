@@ -135,51 +135,56 @@ void ToolInterface::BulletEditor()
 
 
         //delete bullet
-        bool isBulletUsed = false;
-        bool isLastBullet = false;
+        static bool isBulletUsed = false;
+        static bool isLastBullet = false;
 
         if (ImGui::Button("Delete Bullet"))
         {
-            mAllBullets.erase(mAllBullets.begin() + mCurrentBulletIndex);
-            UpdateBulletSpawner();
-        //    isBulletUsed = false;
-        //    isLastBullet = false;
+            isBulletUsed = false;
+            isLastBullet = false;
 
-        //    for (int i = 0; i < mAllAttackPattern.size(); i++)
-        //    {
-        //        if (mAllAttackPattern[i].bulletData == bullet)
-        //        {
-        //            isBulletUsed = true;
-        //            break;
-        //        }
-        //    }
+            for (int i = 0; i < mAllAttackPattern.size(); i++)
+            {
+                if (mAllAttackPattern[i].bulletData == bullet)
+                {
+                    isBulletUsed = true;
+                    break;
+                }
+            }
 
-        //    if (!isBulletUsed)
-        //    {
-        //        if (mAllBullets.size() > 1)
-        //        {
-        //            isLastBullet = false;
+            if (!isBulletUsed)
+            {
+                if (mAllBullets.size() > 1)
+                {
+                    isLastBullet = false;
 
-        //            //mAllBullets.erase(mAllBullets.begin() + mCurrentBulletIndex);
-        //            mAllBullets.erase(mAllBullets.begin());
-        //            UpdateBulletSpawner();
-        //        }
-        //        else
-        //        {
-        //            isLastBullet = true;
-        //        }
-        //    }
+                    if (bullet == mAllBullets.back())
+                    {
+                        mCurrentBulletIndex = 0;
+                        mAllBullets.pop_back();
+                    }
+                    else
+                    {
+                        mAllBullets.erase(mAllBullets.begin() + mCurrentBulletIndex);
+                        UpdateBulletSpawner();
+                    }
+                }
+                else
+                {
+                    isLastBullet = true;
+                }
+            }
         }
-        //if (isBulletUsed)
-        //{
-        //    ImGui::SameLine();
-        //    ImGui::Text("Stop using this bullet so you can delete it.");
-        //}
-        //else if (isLastBullet)
-        //{
-        //    ImGui::SameLine();
-        //    ImGui::Text("You need to keep at least one bullet.");
-        //}
+        if (isBulletUsed)
+        {
+            ImGui::SameLine();
+            ImGui::Text("Stop using this bullet so you can delete it.");
+        }
+        else if (isLastBullet)
+        {
+            ImGui::SameLine();
+            ImGui::Text("You need to keep at least one bullet.");
+        }
 
         ImGui::TreePop();
     }
