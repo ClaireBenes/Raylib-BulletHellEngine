@@ -4,6 +4,7 @@ BulletSpawner::BulletSpawner(float x, float y)
 {
 	mX = x;
 	mY = y;
+	//mTexture = LoadTexture("resources/black-hole.png");
 }
 
 void BulletSpawner::Update(float deltaTime)
@@ -48,6 +49,7 @@ void BulletSpawner::Draw()
 	//Size & position of the bulletSpawner
 	mSize = 16;
 	DrawRectangle(mX - mSize / 2.0f, mY - mSize / 2.0f, mSize, mSize, BLUE);
+	//DrawTextureEx(LoadTexture("resources/black-hole.png"), { mX - mSize / 2.0f, mY - mSize / 2.0f }, 0, mSize, WHITE);
 }
 
 

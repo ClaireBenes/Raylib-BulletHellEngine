@@ -31,7 +31,7 @@ void ToolInterface::Init()
     blueBullet->mColor = BLUE;
     blueBullet->mSpeed = 100;
     blueBullet->mSize = 32;
-    blueBullet->mAngularVelocity = 0.0f;
+    blueBullet->mAngularVelocity = 15.0f;
     mAllBullets.push_back(blueBullet);
 
     AttackPatternData arthurPattern2 {};
@@ -54,7 +54,7 @@ void ToolInterface::Init()
     clairePattern.bulletData = blueBullet;
     clairePattern.timeBetweenBullet = 1.5f;
     clairePattern.bulletCount = 8;
-    clairePattern.rotationSpeed = 6;
+    clairePattern.rotationSpeed = 0;
     clairePattern.bulletRotationOffset = 0.0f;
     mAllAttackPattern.push_back(clairePattern);
 

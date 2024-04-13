@@ -24,6 +24,7 @@ public:
 	float mSpawnTime = SPAWN_TIME;
 
 private:
+	Texture2D mTexture;
 	std::vector<AttackPatternData> mAttackPatternData;
 	std::vector<float> mAttackPatternTimer;
 	float mScreenWidth = 0;
