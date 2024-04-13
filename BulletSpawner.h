@@ -22,9 +22,9 @@ public:
 public:
 	const float SPAWN_TIME = 0.5f;
 	float mSpawnTime = SPAWN_TIME;
+	Texture2D mTexture;
 
 private:
-	Texture2D mTexture;
 	std::vector<AttackPatternData> mAttackPatternData;
 	std::vector<float> mAttackPatternTimer;
 	float mScreenWidth = 0;

@@ -58,6 +58,8 @@ void ToolInterface::Init()
     clairePattern.bulletRotationOffset = 0.0f;
     mAllAttackPattern.push_back(clairePattern);
 
+    mBulletSpawner->mTexture = LoadTexture("resources/black-hole.png");
+
     mBulletInnerTextures = { LoadTexture("resources/simple-bullet-inner.png"), LoadTexture("resources/simple2-bullet-inner.png"),
         LoadTexture("resources/sharp-bullet-inner.png"), LoadTexture("resources/gear-bullet-inner.png") };
 

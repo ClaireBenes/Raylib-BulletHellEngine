@@ -48,8 +48,9 @@ void BulletSpawner::Draw()
 {
 	//Size & position of the bulletSpawner
 	mSize = 16;
+	float textureSize = 1.5f;
 	DrawRectangle(mX - mSize / 2.0f, mY - mSize / 2.0f, mSize, mSize, BLUE);
-	//DrawTextureEx(LoadTexture("resources/black-hole.png"), { mX - mSize / 2.0f, mY - mSize / 2.0f }, 0, mSize, WHITE);
+	DrawTextureEx(mTexture, { mX - mTexture.width / 1.5f, mY - mTexture.height / 1.5f }, 0, textureSize, WHITE);
 }
 
 
