@@ -7,6 +7,7 @@
 
 void ToolInterface::Init()
 {
+    //Instantiate some Bullet and Attack Pattern
     auto orangeBullet = std::make_shared<BulletData>();
     orangeBullet->mName = "Orange";
     orangeBullet->mColor = ORANGE;
@@ -58,6 +59,7 @@ void ToolInterface::Init()
     clairePattern.bulletRotationOffset = 0.0f;
     mAllAttackPattern.push_back(clairePattern);
 
+    //Load Texture
     mBulletSpawner->mTexture = LoadTexture("resources/black-hole.png");
 
     mBulletInnerTextures = { LoadTexture("resources/simple-bullet-inner.png"), LoadTexture("resources/simple2-bullet-inner.png"),
@@ -84,11 +86,10 @@ void ToolInterface::Draw()
         mBulletNames.push_back(bullet->mName.c_str());
     }
 
-
 	BulletEditor();
 	AttackPatternEditor();
 
-    ImGui::ShowDemoWindow();
+    //ImGui::ShowDemoWindow();
 
 	rlImGuiEnd();
 }
