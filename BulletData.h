@@ -9,6 +9,7 @@ public:
     Color mColor = RED;
     Texture2D mInnerImage = LoadTexture("resources/simple2-bullet-inner.png");
     Texture2D mOuterImage = LoadTexture("resources/simple2-bullet-outer.png");
+    const char* mImageName = "Simple Bullet";
     std::string mName = "Elaine";
     float mSpeed = 50;
     float mAngularVelocity = 0;

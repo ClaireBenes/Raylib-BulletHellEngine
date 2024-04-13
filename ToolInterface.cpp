@@ -26,6 +26,7 @@ void ToolInterface::Init()
     auto blueBullet = std::make_shared<BulletData>();
     blueBullet->mInnerImage = LoadTexture("resources/gear-bullet-inner.png");
     blueBullet->mOuterImage = LoadTexture("resources/gear-bullet-outer.png");
+    blueBullet->mImageName = "Gear Bullet";
     blueBullet->mName = "Blue";
     blueBullet->mColor = BLUE;
     blueBullet->mSpeed = 100;
@@ -57,6 +58,14 @@ void ToolInterface::Init()
     clairePattern.bulletRotationOffset = 0.0f;
     mAllAttackPattern.push_back(clairePattern);
 
+    mBulletInnerTextures = { LoadTexture("resources/simple-bullet-inner.png"), LoadTexture("resources/simple2-bullet-inner.png"),
+        LoadTexture("resources/sharp-bullet-inner.png"), LoadTexture("resources/gear-bullet-inner.png") };
+
+    mBulletOuterTextures = { LoadTexture("resources/simple-bullet-outer.png"), LoadTexture("resources/simple2-bullet-outer.png"),
+        LoadTexture("resources/sharp-bullet-outer.png"), LoadTexture("resources/gear-bullet-outer.png") };
+
+    mBulletTexturesName = { "Basic Bullet", "Simple Bullet", "Sharp Bullet", "Gear Bullet" };
+
     UpdateBulletSpawner();
 
     mBulletRenderTexture = LoadRenderTexture(100, 100);
@@ -73,10 +82,11 @@ void ToolInterface::Draw()
         mBulletNames.push_back(bullet->mName.c_str());
     }
 
-    //ImGui::ShowDemoWindow();
 
 	BulletEditor();
 	AttackPatternEditor();
+
+    ImGui::ShowDemoWindow();
 
 	rlImGuiEnd();
 }
@@ -135,7 +145,29 @@ void ToolInterface::BulletEditor()
         }
 
         //choose image
+        ImGui::SeparatorText("Bullet Image");
         rlImGuiImageRenderTexture(&mBulletRenderTexture);
+
+        int pos = 0;
+
+        for (int i = 0; i < mBulletTexturesName.size(); i++)
+        {
+            if (mBulletTexturesName[i] == bullet->mImageName)
+            {
+                pos = i;
+            }
+        }
+
+        if (ImGui::Combo("Images", &pos, mBulletTexturesName.data(), mBulletTexturesName.size()))
+        {
+            bullet->mInnerImage = mBulletInnerTextures[pos];
+            bullet->mOuterImage = mBulletOuterTextures[pos];
+            bullet->mImageName = mBulletTexturesName[pos];
+
+            UpdateBulletRenderTexture();
+        }
+
+        ImGui::SeparatorText("");
 
         //choose speed
         ImGui::DragFloat("Speed", &bullet->mSpeed, 1.0f, 0.0f, 500.0f);
@@ -180,12 +212,14 @@ void ToolInterface::BulletEditor()
                         mCurrentBulletIndex = 0;
                         //delete last bullet
                         mAllBullets.pop_back();
+                        UpdateBulletRenderTexture();
                     }
                     else
                     {
                         //delete current bullet
                         mAllBullets.erase(mAllBullets.begin() + mCurrentBulletIndex);
                         UpdateBulletSpawner();
+                        UpdateBulletRenderTexture();
                     }
                 }
                 else

@@ -37,8 +37,6 @@ void Bullet::Draw()
 	//DrawRectangleLinesEx(dest, 2.0f, RED);
 	Vector2 origin { mSize, mSize };
 
-	//DrawCircleLines(mX, mY, mSize, RED);
-
 	DrawTexturePro(mBulletData->mInnerImage, source, dest, origin, mAngle * (180/PI), WHITE);
 	DrawTexturePro(mBulletData->mOuterImage, source, dest, origin, mAngle * (180/PI), mBulletData->mColor);
 }

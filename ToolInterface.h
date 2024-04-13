@@ -24,6 +24,9 @@ private:
 	std::vector<std::shared_ptr<BulletData>> mAllBullets;
 	std::vector<AttackPatternData> mAllAttackPattern;
 	std::shared_ptr<BulletSpawner> mBulletSpawner;
+	std::vector<Texture2D> mBulletInnerTextures;
+	std::vector<Texture2D> mBulletOuterTextures;
+	std::vector<const char*> mBulletTexturesName;
 
 	std::vector<const char*> mBulletNames;
 	int mCurrentBulletIndex = 0;
