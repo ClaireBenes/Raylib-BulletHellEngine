@@ -10,8 +10,12 @@
 class ToolInterface
 {
 public:
+	ToolInterface();
+
 	void Init();
 	void Draw();
+
+	void TopMenuBar();
 
 	void BulletEditor();
 	void AttackPatternEditor();
@@ -24,6 +28,7 @@ private:
 	std::vector<std::shared_ptr<BulletData>> mAllBullets;
 	std::vector<AttackPatternData> mAllAttackPattern;
 	std::shared_ptr<BulletSpawner> mBulletSpawner;
+
 	std::vector<Texture2D> mBulletInnerTextures;
 	std::vector<Texture2D> mBulletOuterTextures;
 	std::vector<const char*> mBulletTexturesName;
@@ -33,5 +38,8 @@ private:
 	char mNewBulletName[64] = "Elaine";
 
 	RenderTexture2D mBulletRenderTexture;
+
+protected:
+	GameManager* mManager;
 };
 

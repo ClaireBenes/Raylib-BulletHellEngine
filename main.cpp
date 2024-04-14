@@ -32,8 +32,6 @@ void Unload();
 
 int main()
 {
-    //********** Variables **********//
-
     auto bulletSpawner = std::make_shared<BulletSpawner>(780 / 2.0f, screenHeight / 3.0f);
     toolInterface.SetBulletSpawner(bulletSpawner);
 
@@ -78,8 +76,6 @@ void Draw()
 
     gameManager.Draw();
     toolInterface.Draw();
-
-    DrawText(TextFormat("FPS : %d", GetFPS()), 10, 10, 20, RED);
 
     EndDrawing();
 }

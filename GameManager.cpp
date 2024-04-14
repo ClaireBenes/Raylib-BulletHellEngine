@@ -43,9 +43,6 @@ void GameManager::Update(float deltaTime)
 
 void GameManager::Draw()
 {
-	//Debug bullet count (gameObjects - bulletSpawner & player)
-	//DrawText(TextFormat("Bullets : %i", mObjects.size() - 2), 10, 10, 30, RED);
-
 	for (auto& object : mObjects)
 	{
 		object->Draw();
@@ -62,6 +59,11 @@ void GameManager::ToAddObject(std::shared_ptr<GameObject> object)
 void GameManager::ToEraseObject(std::shared_ptr<GameObject> object)
 {
 	mObjectToErase.push_back(object);
+}
+
+std::vector<std::shared_ptr<GameObject>> GameManager::GetAllGameObjects()
+{
+	return mObjects;
 }
 
 GameManager* GameManager::GetInstance()

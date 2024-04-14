@@ -12,16 +12,13 @@ Player::Player(float x, float y)
 void Player::Update(float deltaTime)
 {
 	//if player is not hurt and has respawned
-
-
 	if(!mIsHurt)
 	{
-		if (GetMouseX() > 780)
+		//if mouse on the editor
+		if (GetMouseX() > 770)
 		{
-			mInvincibilityTime = INVINCIBILITY_TIME / 2;
-			mIsInvincible = true;
-			mX -= (mX - (780 / 2.0f)) * mRespawnSpeed * deltaTime;
-			mY -= (mY - (960 / 1.1f)) * mRespawnSpeed * deltaTime;
+			mX = 765;
+			mY -= (mY - GetMouseY()) * mSpeed * deltaTime;
 		}
 		else
 		{
@@ -60,8 +57,6 @@ void Player::Update(float deltaTime)
 
 void Player::Draw()
 {
-	//Draw Player Texture behind too
-	
 	//Size & position of the player
 	mSize = 8;
 

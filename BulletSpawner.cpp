@@ -4,7 +4,6 @@ BulletSpawner::BulletSpawner(float x, float y)
 {
 	mX = x;
 	mY = y;
-	//mTexture = LoadTexture("resources/black-hole.png");
 }
 
 void BulletSpawner::Update(float deltaTime)

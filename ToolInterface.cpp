@@ -5,6 +5,11 @@
 #include "rlImGui.h"
 #include <string>
 
+ToolInterface::ToolInterface()
+{
+    mManager = GameManager::GetInstance();
+}
+
 void ToolInterface::Init()
 {
     //Instantiate some Bullet and Attack Pattern
@@ -79,6 +84,7 @@ void ToolInterface::Init()
 void ToolInterface::Draw()
 {
 	rlImGuiBegin();
+    TopMenuBar();
 
     mBulletNames.clear();
     for (auto& bullet : mAllBullets)
@@ -89,11 +95,29 @@ void ToolInterface::Draw()
 	BulletEditor();
 	AttackPatternEditor();
 
-    //ImGui::ShowDemoWindow();
+    ImGui::ShowDemoWindow();
 
 	rlImGuiEnd();
 }
 
+void ToolInterface::TopMenuBar()
+{
+    if (ImGui::BeginMainMenuBar())
+    {
+        if (ImGui::BeginMenu("Game Mode"))
+        {
+            (ImGui::MenuItem("Play Mode", "CTRL + P"));
+            (ImGui::MenuItem("Editor Mode", "CTRL + E"));
+            ImGui::EndMenu();
+        }
+
+        //Debug bullet count (gameObjects - bulletSpawner & player)
+        ImGui::Text(TextFormat("| Bullets : %i", mManager->GetAllGameObjects().size() - 2));
+        ImGui::Text(TextFormat(" FPS : %d", GetFPS()));
+
+        ImGui::EndMainMenuBar();
+    }
+}
 
 void ToolInterface::BulletEditor()
 {

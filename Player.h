@@ -28,7 +28,5 @@ private:
 
 private:
 	static Player* instance;
-
-
 };
 

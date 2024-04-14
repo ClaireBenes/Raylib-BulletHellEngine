@@ -15,6 +15,8 @@ public:
 	void ToAddObject(std::shared_ptr<GameObject> object);
 	void ToEraseObject(std::shared_ptr<GameObject> object);
 
+	std::vector<std::shared_ptr<GameObject>> GetAllGameObjects();
+
 	static GameManager* GetInstance();
 
 private:
