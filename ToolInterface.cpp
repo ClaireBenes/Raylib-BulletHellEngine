@@ -1,4 +1,5 @@
 #include "ToolInterface.h"
+#include "Player.h"
 
 #include "raylib.h"
 #include "imgui.h"
@@ -95,25 +96,44 @@ void ToolInterface::Draw()
 	BulletEditor();
 	AttackPatternEditor();
 
-    ImGui::ShowDemoWindow();
+    //ImGui::ShowDemoWindow();
 
 	rlImGuiEnd();
 }
 
 void ToolInterface::TopMenuBar()
 {
+    auto player = Player::GetInstance();
+
     if (ImGui::BeginMainMenuBar())
     {
-        if (ImGui::BeginMenu("Game Mode"))
+        if (ImGui::BeginMenu("Options"))
         {
-            (ImGui::MenuItem("Play Mode", "CTRL + P"));
-            (ImGui::MenuItem("Editor Mode", "CTRL + E"));
+            if ((ImGui::MenuItem("Play Mode", "CTRL + P")))
+            {
+                player->SetInEditor(false);
+            }
+            if ((ImGui::MenuItem("Editor Mode", "CTRL + E")))
+            {
+                player->SetInEditor(true);
+            }
             ImGui::EndMenu();
         }
 
         //Debug bullet count (gameObjects - bulletSpawner & player)
-        ImGui::Text(TextFormat("| Bullets : %i", mManager->GetAllGameObjects().size() - 2));
-        ImGui::Text(TextFormat(" FPS : %d", GetFPS()));
+        const char* gameMode = "";
+        if (player->CheckIfInEditor())
+        {
+            gameMode = "Editor";
+        }
+        else
+        {
+            gameMode = "Play";
+        }
+
+        ImGui::Text(TextFormat("| [GameMode : %s]", gameMode));
+        ImGui::Text(TextFormat(" [Bullets : %i]", mManager->GetAllGameObjects().size() - 2));
+        ImGui::Text(TextFormat(" [FPS : %d]", GetFPS()));
 
         ImGui::EndMainMenuBar();
     }

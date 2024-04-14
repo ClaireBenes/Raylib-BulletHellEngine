@@ -10,6 +10,8 @@ public:
 	void Update(float deltaTime) override;
 	void Draw() override;
 	void GetHurt();
+	void SetInEditor(bool isInEditor);
+	bool CheckIfInEditor();
 
 	static Player* GetInstance();
 
@@ -25,6 +27,7 @@ private:
 
 	bool mIsHurt = false;
 	bool mIsInvincible = false;
+	bool mIsInEditor = true;
 
 private:
 	static Player* instance;

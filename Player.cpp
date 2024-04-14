@@ -11,8 +11,26 @@ Player::Player(float x, float y)
 
 void Player::Update(float deltaTime)
 {
+	if (IsKeyDown(KEY_LEFT_CONTROL) && IsKeyDown(KEY_E))
+	{
+		mIsInEditor = true;
+	}
+	else if (IsKeyDown(KEY_LEFT_CONTROL) && IsKeyDown(KEY_P))
+	{
+		mIsInEditor = false;
+	}
+
+	if (mIsInEditor)
+	{
+		mX = 780 / 2.0f;
+		mY = 960 / 1.1f;
+
+		mIsHurt = false;
+		mIsInvincible = true;
+	}
+
 	//if player is not hurt and has respawned
-	if(!mIsHurt)
+	if(!mIsHurt && !mIsInEditor)
 	{
 		//if mouse on the editor
 		if (GetMouseX() > 770)
@@ -30,7 +48,7 @@ void Player::Update(float deltaTime)
 	}
 
 	//if player got hurt
-	if (mIsInvincible)
+	if (mIsInvincible && !mIsInEditor)
 	{
 		if (mIsHurt)
 		{
@@ -73,7 +91,7 @@ void Player::Draw()
 	}
 
 	//Red Screen when collides with bullet
-	if (mIsHurt)
+	if (mIsHurt && !mIsInEditor)
 	{
 		DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), { 190, 33, 55, 80 });
 	}
@@ -82,7 +100,7 @@ void Player::Draw()
 void Player::GetHurt()
 {
 	//if not invicible, get hurt
-	if (!mIsInvincible)
+	if (!mIsInvincible && !mIsInEditor)
 	{
 		mRespawnTime = RESPAWN_TIME;
 		mInvincibilityTime = INVINCIBILITY_TIME;
@@ -90,6 +108,16 @@ void Player::GetHurt()
 		mIsHurt = true;
 		mIsInvincible = true;
 	}
+}
+
+void Player::SetInEditor(bool isInEditor)
+{
+	mIsInEditor = isInEditor;
+}
+
+bool Player::CheckIfInEditor()
+{
+	return mIsInEditor;
 }
 
 Player* Player::GetInstance()
