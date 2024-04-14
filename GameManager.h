@@ -14,6 +14,7 @@ public:
 
 	void ToAddObject(std::shared_ptr<GameObject> object);
 	void ToEraseObject(std::shared_ptr<GameObject> object);
+	void EraseAllBullets();
 
 	std::vector<std::shared_ptr<GameObject>> GetAllGameObjects();
 

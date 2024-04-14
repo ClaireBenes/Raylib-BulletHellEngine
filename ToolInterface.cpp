@@ -126,10 +126,7 @@ void ToolInterface::TopMenuBar()
         //clear all bullets
         if (ImGui::Button("Clear ALL Bullets"))
         {
-            for (int object = 2; object < mManager->GetAllGameObjects().size(); object++)
-            {
-                mManager->ToEraseObject(mManager->GetAllGameObjects()[object]);
-            }
+            mManager->EraseAllBullets();
         }
 
         //Debug bullet count (gameObjects - bulletSpawner & player)

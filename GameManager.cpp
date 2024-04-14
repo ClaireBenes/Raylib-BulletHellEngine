@@ -61,6 +61,14 @@ void GameManager::ToEraseObject(std::shared_ptr<GameObject> object)
 	mObjectToErase.push_back(object);
 }
 
+void GameManager::EraseAllBullets()
+{
+	for (int object = 2; object < mObjects.size(); object++)
+	{
+		ToEraseObject(mObjects[object]);
+	}
+}
+
 std::vector<std::shared_ptr<GameObject>> GameManager::GetAllGameObjects()
 {
 	return mObjects;
