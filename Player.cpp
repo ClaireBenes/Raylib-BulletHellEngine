@@ -11,6 +11,7 @@ Player::Player(float x, float y)
 
 void Player::Update(float deltaTime)
 {
+	//Change between play and editor mode
 	if (IsKeyDown(KEY_LEFT_CONTROL) && IsKeyDown(KEY_E))
 	{
 		mIsInEditor = true;
@@ -76,7 +77,7 @@ void Player::Update(float deltaTime)
 void Player::Draw()
 {
 	//Size & position of the player
-	mSize = 8;
+	mSize = 6;
 
 	//If is invincible, see player less (less alpha)
 	if (mIsInvincible)

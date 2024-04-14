@@ -105,6 +105,7 @@ void ToolInterface::TopMenuBar()
 {
     auto player = Player::GetInstance();
 
+    //switch between editor mode and play mode
     if (ImGui::BeginMainMenuBar())
     {
         if (ImGui::BeginMenu("Options"))
@@ -118,6 +119,17 @@ void ToolInterface::TopMenuBar()
                 player->SetInEditor(true);
             }
             ImGui::EndMenu();
+        }
+
+        ImGui::Text("|");
+
+        //clear all bullets
+        if (ImGui::Button("Clear ALL Bullets"))
+        {
+            for (int object = 2; object < mManager->GetAllGameObjects().size(); object++)
+            {
+                mManager->ToEraseObject(mManager->GetAllGameObjects()[object]);
+            }
         }
 
         //Debug bullet count (gameObjects - bulletSpawner & player)
