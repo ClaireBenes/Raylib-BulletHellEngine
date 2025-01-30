@@ -2,11 +2,12 @@
 
 A fully functional **bullet hell engine** built with **Raylib**, featuring an integrated **ImGui editor** for real-time customization of bullet patterns, enemy behaviors, and game parameters.  
 
+![Engine Screenshot](![bullethell](https://github.com/user-attachments/assets/53bfe2e2-f07b-4866-be59-8c043488cf22)) 
+
 ## Features  
 
 - **ImGui-powered editor** – Adjust/Create bullet data and bullet patterns.  
 - **Customizable bullet patterns** – Modify in real-time without recompilation.  
-- **Efficient rendering** – Handles a high volume of bullets smoothly.  
 - **Player and enemy systems** – Includes movement, hitboxes, and attack behaviors.  
 
 ## Project Structure  
