@@ -142,7 +142,7 @@
     <ClCompile Include="Source\imgui\imgui_tables.cpp" />
     <ClCompile Include="Source\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\imgui\rlImGui.cpp" />
-    <ClCompile Include="Source\Game\main.cpp" />
+    <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Game\Player.cpp" />
     <ClCompile Include="Source\Engine\Interface\ToolInterface.cpp" />
   </ItemGroup>
