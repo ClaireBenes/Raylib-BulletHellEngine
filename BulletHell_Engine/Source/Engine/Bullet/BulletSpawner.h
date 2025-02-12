@@ -1,8 +1,8 @@
 #pragma once
 
-#include "GameObject.h"
+#include "Engine/GameObject.h"
 #include "Bullet.h"
-#include "AttackPatternData.h"
+#include "Engine/AttackPatternData.h"
 
 #include <memory>
 #include <vector>

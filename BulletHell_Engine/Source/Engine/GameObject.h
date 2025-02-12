@@ -1,6 +1,6 @@
 #pragma once
 #include "raylib.h"
-#include "GameManager.h"
+#include "Game/GameManager.h"
 
 #include <memory>
 #include <cmath>

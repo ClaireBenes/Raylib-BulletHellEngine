@@ -1,9 +1,9 @@
 #pragma once
 
-#include "AttackPatternData.h"
-#include "BulletData.h"
-#include "BulletSpawner.h"
-#include "GameManager.h"
+#include "Engine/AttackPatternData.h"
+#include "Engine/Bullet/BulletData.h"
+#include "Engine/Bullet/BulletSpawner.h"
+#include "Game/GameManager.h"
 
 #include <vector>
 

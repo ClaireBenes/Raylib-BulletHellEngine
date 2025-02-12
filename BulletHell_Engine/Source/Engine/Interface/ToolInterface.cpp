@@ -1,5 +1,5 @@
 #include "ToolInterface.h"
-#include "Player.h"
+#include "Game/Player.h"
 
 #include "raylib.h"
 #include "imgui.h"
@@ -389,8 +389,6 @@ void ToolInterface::SetBulletSpawner(std::shared_ptr<BulletSpawner> bulletSpawne
 
 void ToolInterface::UpdateBulletSpawner()
 {
-    printf("Update of bullet spawner \n");
-
     mBulletSpawner->ClearAttackPatterns();
 
     for (int pattern = 0; pattern < mAllAttackPattern.size(); pattern++)

@@ -2,10 +2,10 @@
 #include "imgui.h"
 #include "rlImGui.h"
 
-#include "Bullet.h"
-#include "BulletSpawner.h"
+#include "Engine/Bullet/Bullet.h"
+#include "Engine/Bullet/BulletSpawner.h"
+#include "Engine/Interface/ToolInterface.h"
 #include "Player.h"
-#include "ToolInterface.h"
 
 #include <iostream>
 #include <vector>

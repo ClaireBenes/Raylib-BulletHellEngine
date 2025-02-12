@@ -105,7 +105,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(SolutionDir)\Dependencies\include;..\raylib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Source;$(ProjectDir)\imgui;$(SolutionDir)\Dependencies\include;..\raylib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(SolutionDir)\Dependencies\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Source;$(ProjectDir)\imgui;$(SolutionDir)\Dependencies\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,19 +132,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Bullet.cpp" />
-    <ClCompile Include="Source\BulletSpawner.cpp" />
-    <ClCompile Include="Source\GameManager.cpp" />
-    <ClCompile Include="Source\GameObject.cpp" />
+    <ClCompile Include="Source\Engine\Bullet\Bullet.cpp" />
+    <ClCompile Include="Source\Engine\Bullet\BulletSpawner.cpp" />
+    <ClCompile Include="Source\Game\GameManager.cpp" />
+    <ClCompile Include="Source\Engine\GameObject.cpp" />
     <ClCompile Include="Source\imgui\imgui.cpp" />
     <ClCompile Include="Source\imgui\imgui_demo.cpp" />
     <ClCompile Include="Source\imgui\imgui_draw.cpp" />
     <ClCompile Include="Source\imgui\imgui_tables.cpp" />
     <ClCompile Include="Source\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\imgui\rlImGui.cpp" />
-    <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\Player.cpp" />
-    <ClCompile Include="Source\ToolInterface.cpp" />
+    <ClCompile Include="Source\Game\main.cpp" />
+    <ClCompile Include="Source\Game\Player.cpp" />
+    <ClCompile Include="Source\Engine\Interface\ToolInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="ressource\anonymous_pro_bold.ttf" />
@@ -193,14 +193,14 @@
     <Text Include="ressource\DotGothic16-Regular_OFL.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\AttackPatternData.h" />
-    <ClInclude Include="Source\Bullet.h" />
-    <ClInclude Include="Source\BulletData.h" />
-    <ClInclude Include="Source\BulletSpawner.h" />
-    <ClInclude Include="Source\GameManager.h" />
-    <ClInclude Include="Source\GameObject.h" />
-    <ClInclude Include="Source\Player.h" />
-    <ClInclude Include="Source\ToolInterface.h" />
+    <ClInclude Include="Source\Engine\AttackPatternData.h" />
+    <ClInclude Include="Source\Engine\Bullet\Bullet.h" />
+    <ClInclude Include="Source\Engine\Bullet\BulletData.h" />
+    <ClInclude Include="Source\Engine\Bullet\BulletSpawner.h" />
+    <ClInclude Include="Source\Game\GameManager.h" />
+    <ClInclude Include="Source\Engine\GameObject.h" />
+    <ClInclude Include="Source\Game\Player.h" />
+    <ClInclude Include="Source\Engine\Interface\ToolInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
