@@ -22,7 +22,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{2c8a3e26-4bb8-4ffc-8007-7ae4cca07101}</ProjectGuid>
-    <RootNamespace>DesignPatterns</RootNamespace>
+    <RootNamespace>BulletHell_Engine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>BulletHell_Engine</ProjectName>
   </PropertyGroup>
