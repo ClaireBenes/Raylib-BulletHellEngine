@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_demo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_tables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\rlImGui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BulletSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ToolInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui\imgui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui\imgui_demo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui\imgui_draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui\imgui_tables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui\imgui_widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui\rlImGui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="ressource\anonymous_pro_bold.ttf" />
+    <Font Include="ressource\DotGothic16-Regular.ttf" />
+    <Font Include="ressource\KAISG.ttf" />
+    <Font Include="ressource\pixantiqua.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="ressource\black-hole.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\custom_alagard.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\custom_jupiter_crash.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\custom_mecha.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\dejavu.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\gear-bullet-inner.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\gear-bullet-outer.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\noto_cjk.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\pixantiqua.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\sharp-bullet-inner.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\sharp-bullet-outer.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\simple2-bullet-inner.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\simple2-bullet-outer.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\simple-bullet-inner.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\simple-bullet-outer.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\symbola.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\fonts\alagard.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\fonts\alpha_beta.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\fonts\jupiter_crash.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\fonts\mecha.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\fonts\pixantiqua.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\fonts\pixelplay.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\fonts\romulus.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressource\fonts\setback.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ressource\dejavu.fnt" />
+    <None Include="ressource\LICENSE.md" />
+    <None Include="ressource\noto_cjk.fnt" />
+    <None Include="ressource\pixantiqua.fnt" />
+    <None Include="ressource\symbola.fnt" />
+    <None Include="ressource\shaders\glsl100\alpha_discard.fs" />
+    <None Include="ressource\shaders\glsl100\sdf.fs" />
+    <None Include="ressource\shaders\glsl330\alpha_discard.fs" />
+    <None Include="ressource\shaders\glsl330\sdf.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ressource\DotGothic16-Regular_OFL.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\AttackPatternData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BulletData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BulletSpawner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ToolInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
