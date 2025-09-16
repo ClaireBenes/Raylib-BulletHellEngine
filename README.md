@@ -13,8 +13,6 @@ A fully functional **bullet hell engine** built with **Raylib**, featuring an in
 ## 🎥 Demo Video
 
 
-https://github.com/user-attachments/assets/c7c7894c-da35-4e02-9f69-b4c83a466fd2
-
 
 
 ## 💡 Inspiration  
