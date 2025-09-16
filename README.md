@@ -8,15 +8,12 @@ A fully functional **bullet hell engine** built with **Raylib**, featuring an in
 
 - **ImGui-powered editor** – Adjust/Create bullet data and bullet patterns.  
 - **Customizable bullet patterns** – Modify in real-time without recompilation.  
-- **Player and enemy systems** – Includes movement, hitboxes, and attack behaviors.  
+- **Player and enemy systems** – Includes movement, hitboxes, and attack behaviors.
+  
+## 🎥 Demo Video
 
-## 📂 Project Structure  
+https://github.com/user-attachments/assets/201ac99f-d9b7-482c-a49a-6020489ffff2
 
-- **`Bullet.cpp`** – Manages bullet movement and behavior.
-- **`BulletSpawner.cpp`** – Spawns bullet and manages all the patterns.  
-- **`Player.cpp`** – Implements player movement, hitboxes, and interactions.  
-- **`GameManager.cpp`** – Core game loop, including rendering, updates and optimization.  
-- **`ToolInterface.cpp`** – Handles the ImGui interface (Bullet, Pattern, Editor).
 
 ## 💡 Inspiration  
 
