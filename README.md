@@ -14,7 +14,6 @@ A fully functional **bullet hell engine** built with **Raylib**, featuring an in
 
 
 
-
 ## 💡 Inspiration  
 
 This project was inspired by the work of **Erik Bolumburu** and his [Touhou Clone Engine](https://github.com/erikbolumburu11/Touhou-Clone-Engine) who gave me the idea for the look of the project.
